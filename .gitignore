@@ -109,3 +109,5 @@ src/escapes.js/*
 # auto-generated configs
 etc/asterisk/telekinesis/*.conf
 etc/asterisk/telekinesis/*.bak
+etc/asterisk/telekinesis/peerings.d/*.conf
+etc/asterisk/telekinesis/peerings.d/*.bak
