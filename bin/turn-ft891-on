@@ -1,0 +1,5 @@
+#!/bin/bash
+[ ! -z "$1" ] && PORT=$1
+[ -z "${PORT}" ] && PORT="/dev/ttyUSB0"
+
+echo "....." > ${PORT}; sleep 1; echo "PS1;" > ${PORT}

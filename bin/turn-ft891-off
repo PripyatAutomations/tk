@@ -1,0 +1,4 @@
+#!/bin/sh
+[ ! -z "$1" ] && PORT=$1
+[ -z "${PORT}" ] && PORT="/dev/ttyUSB0"
+echo "PS0;" > ${PORT}

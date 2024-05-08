@@ -1,0 +1,7 @@
+Clean this mess up! We've cobbled pieces of several of my projects into one tree, now to integrate them cleanly...
+
+* Make the js side wait a brief bit before connecting (setTimeout ..)
+* Add auto-reconnect
+* Add disconnect button
+* cgi-bin has hardcode passwords!
+* genconf/baresip-backend.pl hardcoded hostname

@@ -1,0 +1,5 @@
+#!/bin/sh
+read newpw
+hash=$(echo -n "$newpw" | sha256sum | cut -f 1 -d ' ')
+
+echo "SHA256($hash)"

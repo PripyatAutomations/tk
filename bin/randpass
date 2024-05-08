@@ -1,0 +1,9 @@
+#!/bin/bash
+charset='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789~!@#$%^&*()-=_+;:<>?,./'
+length=20
+str=""
+for i in $(seq 1 $length); do
+    char=${charset:$RANDOM % ${#charset}:1}
+    str+=${char}
+done
+echo $str

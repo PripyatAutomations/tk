@@ -1,0 +1,117 @@
+<link rel="stylesheet" media="screen" href="css/radio.css"/>
+<div id="Pane_Left">
+ <div id="Radio">
+  <div id="RadioGUI">
+   <form id="CAT" action="#">
+    <div id="RadioControls">
+     <div id="CAT_band">
+      <label for="CAT_band">BAND</label><br/>
+      <select name="CAT_band" id="CAT_band">
+       <option value="10M">10M</option>
+       <option value="6M">6M</option>
+       <option value="2M" selected>2M</option>
+       <option value="1.25M">1.25M</option>
+       <option value="70CM">70CM</option>
+       <option value="33CM">33CM</option>
+      </select>
+     </div> <!-- CAT_band -->
+     <div id="CAT_step">
+      <label for="CAT_step">STEP</label><br/>
+      <select name="CAT_step" id="CAT_step">
+       <option value="20k">20 KHz</option>
+       <option value="12.5k" selected>12.5 KHz</option>
+       <option value="10k">10 KHz</option>
+       <option value="9k">9 KHz</option>
+       <option value="5k">5 KHz</option>
+       <option value="1k">1 KHz</option>
+       <option value="370">370 Hz</option>
+       <option value="50">50 Hz</option>
+       <option value="10">10 Hz</option>
+      </select>
+     </div> <!-- CAT_step -->
+     <div id="CAT_agc">
+      <label for="CAT_agc">AGC</label><br/>
+      <select name="CAT_agc" id="CAT_agc">
+       <option value="off" selected>OFF</option>
+       <option value="slow">SLOW</option>
+       <option value="med">MED</option>
+       <option value="fast">FAST</option>
+      </select>
+     </div> <!-- CAT_agc -->
+    </div> <!-- RadioControls -->
+   </form> <!-- CAT -->
+   <div id="RadioDisplay">
+    <div id="VFO_A" class="VFO ActiveVFO">
+    A:
+     <span id="VFO_A_Freq" class="VFO_Freq">146.3900</span>&nbsp;MHz
+    </div>
+    <div id="VFO_B" class="VFO">
+     B:
+     <span id="VFO_B_Freq" class="VFO_Freq">144.2700</span>&nbsp;MHz
+    </div>
+    <div id="statusLights">
+     <span id="stat_TX" class="stat_bt">TX</span>
+     <span id="stat_RIT" class="stat_bt">RIT</span>
+     <span id="stat_SPLIT" class="stat_bt">SPLIT</span>
+     <span id="stat_AGC" class="stat_bt stat_ACTIVE">AGC</span>
+    </div> <!-- statusLights -->
+    <div id="Tuning">
+     <img src="img/knob.svg" alt="VFO Tuning Knob" id="TuningKnob"/>
+    </div>
+    <div id="TabStrip_B">
+     <div class="TabBar" id="Tab_B">
+      <span class="Tab" id="Tab_B_Settings">Settings</span>
+      <span class="Tab" id="Tab_B_Memories">Memories</span>
+     </div>
+     <form id="Settings" action="#">
+      <div id="View_Settings">
+       <span id="SettingsLoading">Loading available settings from radio...</span>
+       Callsign: <input name="Settings_Callsign" id="Settings_Callsign"/>
+      </div>
+      <div id="View_Memories">
+       <center><a href="#">* SAVE *</a></center>
+       <ul>
+       </ul>
+      </div> <!-- View_B_Memories -->
+     </form> <!-- Settings -->
+    </div> <!-- TabStrip_B -->
+   </div> <!-- RadioDisplay -->
+</div> <!-- Pane_Left -->
+<div id="Pane_Right">
+ <div id="TabStrip_A">
+  <div class="TabBar" id="Tab_A">
+   <span class="Tab" id="Tab_A_Voice">Voice</span>
+   <span class="Tab" id="Tab_A_Decoder">Decoder</span>
+   <span class="Tab" id="Tab_A_Waterfall">SDR</span>
+   <span class="Tab" id="Tab_A_FileXFER">XFER</span>
+  </div> <!-- TabBar -->
+  <form id="Voice">
+   <div id="View_Voice" name="Voice">
+   </div>
+  </form>
+  <form id="Decoder">
+   <div id="View_Decoder" name="CW">
+    <div id="CW_Text" name="CW_Text"></div>
+    <div id="CW_Input">
+     <input id="CW_Input" name="CW_Input" type="text"></input>
+     <input id="CW_Send" type="submit" value="SEND"></input>
+    </div> <!-- CW_Input -->
+    <div id="CW_Macro">
+     <!-- Here we should load saved macros via ajax/json -->
+     <center>Macros</center>
+     <input type="button" id="CW_Macro_Add" value="*NEW*"/>
+     <input type="button" id="CW_Clear" value="CLEAR"/>
+     <input type="button" id="CW_Macro_CQ" value="CQ"/>
+    </div> <!-- CW_Macro -->
+   </div> <!-- View_Decoder -->
+  </form> <!-- Decoder -->
+  <div id="View_Waterfall" name="Waterfall">
+   Waterfall view requires SDR.<br/>
+   Please check the <span id="Link_CONFIG" class="link">CONFIGURATON</span>.
+  </div>
+  <div id="View_FileXFER">
+   File transfer isn't supported yet :(
+  </div>
+ </div> <!-- TabStrip_A -->
+</div> <!-- Pane_Right -->
+<script src="js/radOS-radio.js"></script>

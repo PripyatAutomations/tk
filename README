@@ -1,0 +1,11 @@
+Trying to get this working for an initial public release, so excuse the mess!
+
+There's a lot of artifacts here i haven't had time to cleanup or fully integrate...
+
+Edit files in etc/
+Run ./build.sh
+
+
+To start use ./startup.sh
+To stop use  ./stop.sh
+To cleanup before rebuilding use ./cleanup.sh

@@ -1,0 +1,358 @@
+#!/bin/bash
+# this nasty little mess makes controlling the ft891 and maybe ft991a remotely easier.. good luck!
+# Copyright (C) 2023 istabpeople.com. All rights reversed.
+
+[ -z "$RIG" ] && RIG=/dev/ttyUSB0
+
+# FM bits
+FM_SIMPLEX="OS00;"
+FM_SHIFT_UP="OS01;"
+FM_SHIFT_DOWN="OS02;"
+PL_OFF="CT00;"
+PL_BOTH="CT01;"
+PL_ENC="CT02;"
+PL_DCS="CT03;"
+
+# Microhpone selection
+AM_MIC_REAR="EX06051;"
+AM_MIC_FRONT="EX06050;"
+FM_MIC_REAR="EX09011;"
+FM_MIC_FRONT="EX09010;"
+SSB_MIC_REAR="EX11051;"
+SSB_MIC_FRONT="EX11050;"
+
+FRONT_MICS="$AM_MIC_FRONT$FM_MIC_FRONT$SSB_MIC_FRONT"
+REAR_MICS="$AM_MIC_REAR$FM_MIC_REAR$SSB_MIC_REAR"
+
+PL_TONES=( "67.0", "69.3", "71.9", "74.4", "77.0", "79.7", "82.5", "85.4", "88.5",
+           "91.5", "94.8", "97.4", "100.0", "103.5", "107.2", "110.9", "114.8", "118.8",
+           "123.0", "127.3", "131.8", "136.5", "141.3", "146.2", "151.4", "156.7", "159.8",
+           "162.2", "165.5", "167.9", "171.3", "173.8", "177.3", "179.9", "183.5", "186.2",
+           "229.1", "233.6", "241.8", "250.3", "254.1")
+
+function fm_help {
+   echo -e "*** FM Help ***"
+   echo -e "tone\t\tSet PL tone"
+   echo -e "tone-mode\tSet PL tone mode (enc|both|dcs|off)"
+   echo -e "offset\t\tSet repeater shift (+|-|off)"
+   exit 1
+}
+
+function main_help {
+   echo -e "60m\t\t60 meter memory crud"
+   echo -e "dnf\t\tDSP notch filter"
+   echo -e "dnr\t\tDSP noise reduction"
+   echo -e "fm\t\tFM submenu (see fm help)"
+   echo -e "front\t\tSwitch to FRONT inputs"
+   echo -e "lock\t\tLock VFO knob"
+   echo -e "meter\t\tShow meter (alc|comp|id|po|swr)"
+   echo -e "micgain\t\tMic gain"
+   echo -e "monlevel\tMonitor level"
+   echo -e "mode\t\tSwitch to MODE"
+   echo -e "nb\t\tNoise Blanker (on|off|level)"
+   echo -e "power\t\tSet TX power"
+   echo -e "rear\t\tSwitch to REAR inputs"
+   echo -e "unlock\t\tUnlock VFO knob"
+   echo -e "vol\t\tSet speaker volume"
+   exit 1
+}
+
+function sixtym_help {
+   echo -e "*** 60M memories ***"
+   echo -e "chan\t\tTune to 60m channel by # (1-10)"
+   exit 1
+}
+
+function mode_help {
+  echo -e "*** MODE ***"
+  echo -e "[am | am-n | cw | data | fm | fm-n | rtty | ssb]\tSelect operating mode"
+  echo -e "[auto | lsb | usb]\t\t\t\t\tForce LSB or USB mode for selected (data/ssb/cw mode)"
+  exit 1
+}
+
+case $1 in
+   60m)
+      if [ -z "$2" ]; then
+         sixtym_help
+      fi
+      case $2 in
+         chan)
+           CHAN=$3
+           if [ $CHAN -gt 9 ]; then
+              MEM=5$CHAN
+           else
+              MEM=50$CHAN
+           fi
+           echo "Setting 60M channel $CHAN ($MEM)"
+           echo "MC$MEM;MA;" > $RIG
+           ;;
+         *)
+           sixtym_help
+           ;;
+      esac
+      ;;
+   clar)
+      case $2 in
+         on)
+            echo "Set CLARifier ON"
+            echo "CF010;" > $RIG
+            ;;
+         off)
+            echo "Set CLARifier OFF"
+            echo "CF000;" > $RIG
+            ;;
+      esac
+      ;;
+   dnf)
+      case $2 in
+         on)
+            echo "Set DSP Notch Filter ON"
+            echo "BC01;" > $RIG
+            ;;
+         off)
+            echo "Set DSP Notch Filter OFF"
+            echo "BC00;" > $RIG
+            ;;
+      esac
+      ;;
+   dnr)
+      case $2 in
+         on)
+            echo "Set DSP Noise Reduction ON"
+            echo "NR01;" > $RIG
+            ;;
+         off)
+            echo "Set DSP Noise Reduction OFF"
+            echo "NR00;" > $RIG
+            ;;
+      esac
+      ;;
+   front)
+      echo "Switching to FRONT inputs"
+      echo "$FRONT_MICS" > $RIG
+      ;;
+   rear)
+      echo "Switching to REAR inputs"
+      echo "$REAR_MICS" > $RIG
+      ;;
+   lock)
+      echo "Locking VFO"
+      echo "LK1;" > $RIG
+      ;;
+   unlock)
+      echo "Unlocking VFO"
+      echo "LK0;" > $RIG
+      ;;
+   meter)
+      case $2 in
+         alc)
+            echo "MS1;" > $RIG
+            ;;
+         comp)
+            echo "MS0;" > $RIG
+            ;;
+         id)
+            echo "MS4;" > $RIG
+            ;;
+         po)
+            echo "MS2;" > $RIG
+            ;;
+         swr)
+            echo "MS3;" > $RIG
+            ;;
+      esac
+      ;;
+   micgain)
+      if [ -z "$2" ]; then
+        VAL=000
+      else
+        if [ "$2" -lt 10 ]; then
+           VAL="00$2"
+        fi
+        if [ "$2" -ge 10 ]; then
+           VAL="0$2"
+        fi
+        if [ "$2" -ge 100 ]; then
+           VAL="$2"
+        fi
+      fi
+      echo "Setting MICGAIN to $VAL"
+      echo "MG$VAL;" > $RIG
+      ;;
+   monlevel)
+      if [ -z "$2" -o "$2" == "off" ]; then
+        VAL="000"
+      else
+        if [ "$2" -lt 10 ]; then
+           VAL="00$2"
+        fi
+        if [ "$2" -ge 10 ]; then
+           VAL="0$2"
+        fi
+        if [ "$2" -ge 100 ]; then
+           VAL="$2"
+        fi
+      fi
+      if [ "$VAL" == "000" ]; then
+         echo "Setting monitor OFF"
+         echo "ML0000;" > $RIG
+      else
+         echo "Setting MON level to $VAL"
+         echo "ML1$VAL;" > $RIG
+      fi
+      ;;
+   mode)
+      case $2 in
+         am)
+            echo "Set AM mode"
+            echo "MD05;" > $RIG
+            ;;
+         am-n)
+            echo "Set AM-NAR mode"
+            echo "MD0D;" > $RIG
+            ;;
+         cw)
+            echo "Set CW mode"
+            echo "MD03;" > $RIG
+            ;;
+         data)
+            echo "Set DATA mode"
+            echo "MD08;" > $RIG
+            ;;
+         fm)
+            echo "Set FM mode"
+            echo "MD04;" > $RIG
+            ;;
+         fm-n)
+            echo "Set FM-NAR mode"
+            echo "MD0B;" > $RIG
+            ;;
+         rtty)
+            echo "Set RTTY mode"
+            echo "MD06;" > $RIG
+            ;;
+         ssb)
+            echo "Set SSB mode"
+            echo "MD01;" > $RIG
+            ;;
+         auto)
+            echo "Set AUTO mode"
+            echo "EX07072;" > $RIG
+            echo "EX08122;" > $RIG
+            echo "EX10112;" > $RIG
+            echo "EX11072;" > $RIG
+            ;;
+         lsb)
+            echo "Set LSB mode"
+            echo "EX07071;" > $RIG
+            echo "EX08121;" > $RIG
+            echo "EX10111;" > $RIG
+            echo "EX11071;" > $RIG
+            ;;
+         usb)
+            echo "Set USB mode"
+            echo "EX07070;" > $RIG
+            echo "EX08120;" > $RIG
+            echo "EX10110;" > $RIG
+            echo "EX11070;" > $RIG
+            ;;
+         *)
+            mode_help
+            ;;
+      esac
+      ;;
+   nb)
+      case $2 in
+         on)
+            echo "Set Noise Blanker ON"
+            echo "NB01;" > $RIG
+            ;;
+         off)
+            echo "Set Noise Blanker OFF"
+            echo "NB00;" > $RIG
+            ;;
+         *)
+            VAL=0$2
+            [ "$2" -lt 10 ] && VAL=00$2
+            echo "Set Noise Blanker Level to $VAL"
+            echo "NL0$VAL;" > $RIG
+            ;;
+      esac
+      ;;
+
+   power)
+      if [ ! -z "$3" ]; then
+         echo "Setting power to $3"
+         echo "$POWERLVL$3;" > $RIG
+      else
+         echo "You must specify a power level!"
+         exit 2
+      fi
+      ;;
+   fm)
+      # FM stuff
+      if [ -z "$2" ]; then
+         fm_help
+      fi
+      case $2 in
+         help)
+           fm_help
+           ;;
+         tone)
+           ;;
+         tone-mode)
+           [ "$3" == "enc" ] && {
+              echo "Setting CTCSS to ENCODE only"
+              VAL="$PL_ENC"
+           }
+           [ "$3" == "both" ] && {
+              echo "Setting CTCSS to ENCODE + DECODE"
+              VAL="$PL_BOTH"
+           }
+           [ "$3" == "dcs" ] && {
+               VAL="$PL_DCS"
+               echo "DCS is unsupported for now... Add the table above!"
+               exit 3
+           }
+           [ -z "$VAL" -o "$3" == "off" ] && {
+              echo "Turning off CTCSS mode"
+              VAL="$PL_OFF"
+           }
+           echo "CT0$VAL;" > $RIG
+           ;;
+         offset)
+           [ "$3" == "+" ] && VAL="$FM_SHIFT_UP"
+           [ "$3" == "-" ] && VAL="$FM_SHIFT_DOWN"
+           [ -z "$VAL" -o "$3" == "off" ] && VAL="$FM_SIMPLEX"
+
+           echo "Unknown FM command $2"
+           echo "$VAL" > $RIG
+           ;;
+         *)
+           fm_help
+           ;;
+      esac
+      ;;
+   vol)
+      if [ -z "$2" ]; then
+        VAL=000
+      else
+        if [ "$2" -lt 10 ]; then
+           VAL="00$2"
+        fi
+        if [ "$2" -ge 10 ]; then
+           VAL="0$2"
+        fi
+        if [ "$2" -ge 100 ]; then
+           VAL="$2"
+        fi
+      fi
+      echo "Setting volume to $VAL"
+      echo "AG0$VAL;" > $RIG
+      ;;
+   *)
+      echo "Usage: $(basename $0) [cmd] [args] ..."
+      echo ""
+      main_help
+      ;;
+esac

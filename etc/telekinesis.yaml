@@ -1,0 +1,91 @@
+--- # telekinesis configuration
+# setup users/groups for the various subprocesses...
+users:
+    ari_user:		rigctl
+    ari_group:		rigctl
+    asterisk_user:	asterisk
+    asterisk_group:	asterisk
+    baresip_user:	baresip
+    baresip_group:	baresip
+    fcgi_perl_user:	fcgi-perl
+    fcgi_perl_group:	fcgi-perl
+    nginx_user:		www-data
+    nginx_group:	www-data
+    rigctl_user:	rigctl
+    rigctl_group:	rigctl
+    www_db_user:	www-db
+    www_db_group:	www-db
+    www_user:		www-data
+    www_group:		www-data
+
+ports:
+    ari:	8088
+    ari_bind:	127.0.0.1
+    ari_prefix: /pbx/ari
+    http:	8000
+    https:	8443
+#    http_bind_addr: 127.0.0.1
+    rigctl_wrapper: 18001
+    rigctl_wrapper_bind: 127.0.0.1
+    asterisk_http: 8088
+    asterisk_http_bind: 127.0.0.1
+    asterisk_https: 8089
+    asterisk_https_bind: 127.0.0.1
+
+housekeeping:
+    # If the session is idle for more than 30 minutes, allow it to be expired by cron job
+    session_timeout_act: 10800
+
+station:
+    admin: "Lazy Hambones"
+    admin_email: "lazy@hambones.org"
+    callsign: "N0CALL"
+    default_mode: phone
+    default_voice: en_in_Kajal
+    gridsquare: FN19aa
+    selcal_dtmf: "987654321"
+    shutdown_dtmf: "##90210321##"
+
+logging:
+    date_format: "%Y/%m/%d %H:%M:%S"
+    hamlib_log_level: debug
+    log_level: debug
+    sip_log_level: debug
+
+radios:
+    radio0:
+        active_vfo: a
+        debug_level: bug
+        dialstring: "/dial sip:0@radio.mydomain.com"
+        vfo_a:
+            freq: 7074000
+            if_shift: 0
+            mode: D-U
+            width: 3000
+        vfo_b:
+            freq: 7074000
+            if_shift: 0,
+            mode: D-U
+            width: 3000
+        ptt_blocked: true
+        power: 50
+        station_mode: phone
+        using_vox: false
+        cat_device: /dev/serial/by-id/usb-Silicon_Labs_CP2105_Dual_USB_to_UART_Bridge_Controller_0141CD8B-if00-port0
+        cat_baud: 38400
+        rigctld_host: 127.0.0.1
+        rigctld_port: 4532
+        rigctld_model: 1036
+        soundcard: usb0
+
+soundcards:
+    usb0:
+        in_device: plughw:CARD=Audio,DEV=0
+        out_device: plughw:CARD=Audio,DEV=0
+        volumes:
+            digi_mic: 12
+            digi_spkr: 7
+            phone_mic: 16
+            phone_spkr: 7
+            pkt_mic: 13
+            pkt_spkr: 25

@@ -1,0 +1,9 @@
+#!/bin/bash
+#. /opt/telekinesis/etc/config.sh
+
+killall -TERM flrig rigctld
+(sleep 5; rigctld  -m 4 -P RIG -t 4532 </dev/null 2>&1) &
+
+# This should block until flrig exits at which time we kill rigctld ;)
+flrig </dev/null 2>&1
+killall -9 rigctld

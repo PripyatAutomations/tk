@@ -1,0 +1,23 @@
+#!/bin/bash
+. /opt/telekinesis/lib/config.sh
+
+/opt/telekinesis/bin/modeset-off
+
+# Configure mixer
+amixer -c$CARD set 'PCM',0 ${DIGI_SPKR}
+amixer -c$CARD set 'Mic',0 ${DIGI_MIC}
+
+# Start rigctld
+#/opt/telekinesis/bin/ft891-rigctl.start
+
+echo "* Setting rig to DATA-U"
+rigctl -m 4 M PKTUSB 0
+
+echo "* Setting power to 35W"
+rigctl -m 4 L RFPOWER 0.35
+
+echo "* Turning off DNR"
+rigctl -m 4 w 'NR00;'
+
+# User can start wsjtx/etc as needed...
+echo "* Digital mode enabled!"

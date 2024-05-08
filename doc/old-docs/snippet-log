@@ -1,0 +1,6 @@
+open my $log, '>>', "/opt/telekinesis/tmp/login.log" or die "Unable to open tmp/login.log: $!\n";
+#foreach my $key (sort(keys(%ENV))) {
+#    if ($key =~ m/SERVER_/) {
+#       print $log "$key = $ENV{$key}\n";
+#    }
+#}

@@ -1,0 +1,18 @@
+#!/bin/bash
+# Turn off all mode support bits. Called when changing modes
+. /opt/telekinesis/lib/config.sh
+
+echo "* Killing processes..."
+killall -TERM ${EXTRA_DIGI} baresip 2>&1>/dev/null
+sleep 3
+killall -KILL ${EXTRA_DIGI} baresip 2>&1>/dev/null
+
+PTT_STATE=$(rigctl -m 4 get_ptt)
+echo "* Sending PTT off command (currently: ${PTT_STATE})"
+rigctl -m 4 set_ptt 0
+
+#echo "* Killing tmux sessions"
+#tmux kill-session -t digi
+#tmux kill-session -t phone
+#tmux kill-session -t winlink
+echo "* Services halted"

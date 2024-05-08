@@ -1,0 +1,19 @@
+#!/bin/bash
+. ./etc/config.sh
+
+if [ ! -z "$1" -a "$1" == "-f" -a -f "${DB}" ]; then
+   rm -f ${DB}
+else
+   echo "* Database ${DB} exists and -f not passed, skipping tk-updatedb!"
+fi
+
+if [ ! -f ${DB} ]; then
+   # import the base schema
+   echo "* Importing schema for sqlite3"
+   sqlite3 ${DB} < db/schema/sqlite3.sql
+   find db/data -type f -name \*.sql | while read i; do
+      echo "* Importing $i"
+      sqlite3 ${DB} < $i
+   done
+fi
+

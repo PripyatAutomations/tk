@@ -1,0 +1,14 @@
+-------
+Peering
+-------
+* Wireguard tunnel(s) established to peers
+* Keypairs are generated for the session
+* Asterisk configuration is generated & keypairs exchanged
+  - etc/asterisk/peers.d/{callsign}
+
+----------
+Voice Path
+----------
+
+* Asterisk is started locally
+* Connects to configured peers over overlay

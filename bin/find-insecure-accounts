@@ -1,0 +1,2 @@
+#!/bin/bash
+sudo passwd -a -S | awk '{ printf "%s %s\n", $2, $1 }' | egrep '^L.+' | cut -f 2 -d ' '|while read tgt_user; do tgt_home=$(getent passwd $tgt_user|cut -d ':' -f 6); if [ -f $tgt_home/.ssh/authorized_keys ]; then echo "DISABLED user $tgt_user has ssh key at $tgt_home/.ssh/authorized_keys"; fi; done

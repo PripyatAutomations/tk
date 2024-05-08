@@ -1,0 +1,98 @@
+<link rel="stylesheet" media="screen" href="css/radio.css"/>
+<div class="radio_win">
+ <div id="Pane_Left">
+  <div id="Radio">
+   <div id="RadioGUI">
+    <form id="CAT" action="#">
+     <div id="RadioControls">
+     <!-- This should jump to last frequency used on this band -->
+      <div id="CAT_band" class="x-custom-select" style="width:6.5em;">
+       <label for="CAT_band">BAND</label><br/>
+       <select name="CAT_band" id="CAT_band">
+        <option value="160M">160M</option>
+        <option value="80M">80M</option>
+        <option value="40M">40M</option>
+        <option value="30M">30M (Digi)</option>
+        <option value="20M">20M</option>
+        <option value="17M">17M</option>
+        <option value="12M">12M</option>
+        <option value="10M">10M</option>
+        <option value="6M">6M</option>
+        <option value="2M">2M</option>
+        <option value="70CM">70CM</option>
+        <option value="RX">RX</option>
+       </select>
+      </div> <!-- CAT_band -->
+      <div id="CAT_mode">
+       <label for="CAT_mode">MODE</label><br/>
+       <select name="CAT_mode" id="CAT_mode">
+        <option value="CW" id="CAT_mode_CW">CW</option>
+        <option value="LSB" id="CAT_mode_LSB">LSB</option>
+        <option value="USB" id="CAT_mode_USB">USB</option>
+        <option value="CWL" id="CAT_mode_CWL">CW-LSB</option>
+        <option value="CWU" id="CAT_mode_CWU">CW-USB</option>
+        <option value="FM" id="CAT_mode_FM">FM</option>
+       </select>
+      </div> <!-- CAT_mode -->
+      <div id="CAT_step">
+       <label for="CAT_step">STEP</label><br/>
+       <select name="CAT_step" id="CAT_step">
+        <option value="50K" id="CAT_step_50k">50 KHz</option>
+        <option value="25K" id="CAT_step_25k">25 KHz</option>
+        <option value="12.5K" id="CAT_step_12.5k">12.5 KHz</option>
+        <option value="10K" id="CAT_step_10k">10 KHz</option>
+        <option value="9K" id="CAT_step_9k">9 KHz</option>
+        <option value="5K" id="CAT_step_5k">5 KHz</option>
+        <option value="1K" id="CAT_step_1k">1 KHz</option>
+        <option value="370" id="CAT_step_370">370 Hz</option>
+        <option value="100" id="CAT_step_100" selected>100 Hz</option>
+        <option value="50" id="CAT_step_50" selected>50 Hz</option>
+        <option value="10" id="CAT_step_10">10 Hz</option>
+       </select>
+      </div> <!-- CAT_step -->
+      <div id="CAT_agc">
+       <label for="CAT_agc">AGC</label><br/>
+       <select name="CAT_agc" id="CAT_agc" class="CAT_agc">
+        <option value="OFF" selected>OFF</option>
+        <option value="SLOW">SLOW</option>
+        <option value="MED">MED</option>
+        <option value="FAST">FAST</option>
+       </select>
+      </div> <!-- CAT_agc -->
+     </div> <!-- RadioControls -->
+    </form> <!-- CAT -->
+    <div id="RadioDisplay">
+     <div id="VFO_A" class="VFO ActiveVFO">A: <frequency id="vfo_freq_a"/>&nbsp;Hz</div>
+     <div id="VFO_B" class="VFO">B: <frequency id="vfo_freq_b"/></span>&nbsp;Hz
+     </div>
+     <div id="statusLights">
+      <span id="stat_TX" class="stat_bt">TX</span>
+      <span id="stat_RIT" class="stat_bt">RIT</span>
+      <span id="stat_SPLIT" class="stat_bt">SPLIT</span>
+      <span id="stat_AGC" class="stat_bt stat_AGC_OFF">AGC</span>
+     </div> <!-- statusLights -->
+     <div id="Tuning">
+      <img src="img/knob.svg" alt="VFO Tuning Knob" id="TuningKnob"/>
+     </div>
+     <div id="TabStrip_B">
+      <div class="TabBar" id="Tab_B">
+       <span class="Tab" id="Tab_B_Settings">Settings</span>
+       <span class="Tab" id="Tab_B_Memories">Memories</span>
+      </div>
+      <form id="Settings" action="#">
+       <div id="View_Settings">
+        <span id="SettingsLoading">Loading available settings from radio...</span>
+        Callsign: <input name="Settings_Callsign" id="Settings_Callsign"/>
+       </div>
+       <div id="View_Memories">
+        <center><a href="#">* SAVE *</a></center>
+        <ul>
+         <li><a href="#">7,025,000 Hz (CW)</a></li>
+         <li><a href="#">7,225,000 Hz (LSB)</a></li>
+        </ul>
+       </div> <!-- View_B_Memories -->
+      </form> <!-- Settings -->
+     </div> <!-- TabStrip_B -->
+    </div> <!-- RadioDisplay -->
+ </div> <!-- Pane_Left -->
+</div> <!-- .radio_win -->

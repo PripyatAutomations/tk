@@ -1,0 +1,7 @@
+#!/bin/bash
+#
+# Reboot a device connected to the PDU in the rack
+SWITCH_NAMES=('shelf-netkit', 'shelf-hf', 'shelf-vhf', 'shelf-sdr')
+PDU_IP=10.11.0.2
+PDU_USER=super
+PDU_PASS=super

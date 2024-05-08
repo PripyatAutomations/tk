@@ -1,0 +1,112 @@
+{ "Menu":
+   {
+      "radio0": {
+         "Brand": "Kenwood",
+         "Model": "TK-790H",
+         "View": "radio_basic",
+         "ShortDescription": "2M FM 110W radio (~100 mi coverage)",
+         "Description": "110W 2M FM commercial radio with 5/8 wave omni for repeater connections",
+         "Bands": {
+            "Band": "2M"
+         },
+         "Modes": {
+            "Mode": "FM"
+         },
+         "Power": {
+            "Min": "5W",
+            "Max": "110W",
+            "Step": "0.5W"
+         }
+      },
+      "radio1": {
+         "Brand": "Kenwood",
+         "Model": "TK-690H",
+         "View": "radio_basic",
+         "Disabled": true,
+         "ShortDescription": "6M FM 110W radio (~100 mi coverage)",
+         "Description": "110W 6M FM commercial radio with J-pole for repeater connections",
+         "Bands": {
+            "Band": "6M"
+         },
+         "Modes": {
+            "Mode": "FM"
+         },
+         "Power": {
+            "Min": "5W",
+            "Max": "110W",
+            "Step": "0.5W"
+         }
+      },
+      "radio2": {
+         "Brand": "Kenwood",
+         "Model": "TK-890H",
+         "View": "radio_basic",
+         "Disabled": true,
+         "ShortDescription": "70CM FM 110W radio (~75 mi coverage)",
+         "Description": "Planned addition of 110W 70CM FM commercial radio for repeater connections",
+         "Bands": {
+            "Band": "70CM"
+         },
+         "Modes": {
+            "Mode": "FM"
+         },
+         "Power": {
+            "Min": "5W",
+            "Max": "110W",
+            "Step": "0.5W"
+         }
+      },
+      "radio3": {
+         "Brand": "ubitx",
+         "Model": "v6",
+         "View": "radio_advanced",
+         "ShortDescription": "uBITX-v6 QRP HF radio",
+         "Description": "uBITX-v6 QRP HF radio with homebrew antenna selector and SR-640 tuner",
+         "Bands": {
+            "Band": "80M",
+            "Band": "40M",
+            "Band": "20M",
+            "Band": "17M",
+            "Band": "15M",
+            "Band": "12M",
+            "Band": "10M"
+         },
+         "Modes": {
+            "Mode": "LSB",
+            "Mode": "USB",
+            "Mode": "CW",
+            "Mode": "Digi"
+         },
+         "Power": {
+            "Min": "5W",
+            "Max": "15W",
+            "Step": "0.5W",
+            "Mode": "fixed"
+         }
+      },
+      "sdr0": {
+         "Brand": "NuElec",
+         "Disabled": true,
+         "Model": "NeSDR3+",
+         "View": "radio_sdr",
+         "ShortDescription": "Listen only SDR",
+         "Description": "My WebSDR"
+      },
+      "speedtest": {
+          "View": "speedtest",
+          "ShortDescription": "Speedtest"
+      },
+      "splat": {
+          "View": "splat",
+          "ShortDescription": "SPLAT propagation plotter"
+      },
+      "admin": {
+          "View": "menu_admin",
+          "ShortDescription": "Admin control panel"
+      },
+      "bugs": {
+          "View": "bugs",
+          "ShortDescription": "Known Bugs/Report Bugs"
+      }
+   }
+}

@@ -1,0 +1,34 @@
+<div class="window">
+<h3>Management</h3>
+<ul>
+ <li><a href="/logout.html">Logout</a></li>
+ <li><viewref name="rigs">Rigs</viewref></li>
+ <li><viewref name="users">Users</viewref></li>
+<h3>Rigs</h3>
+ <!-- Here we should explode the rig list into a list -->
+<div id="rigs" class="list"></div>
+<div id="main_menu_modal" class="menu_modal">
+ <div id="main_menu" class="menu">
+  <form id="main_menu">
+   <fieldset id="main_menu" name="main_menu">
+   <h2>Main Menu</h2>
+   <div id="menu_items"></div>
+   <input type="submit" value="Submit"/>
+   <input type="reset" value="Clear"/>
+   </fieldset>
+  </form>
+  <span id="auto_submit_countdown">
+   Opening <span id="auto_submit_radio">none</span> in <span id="auto_submit_time_left">0</span> sec.
+  </span>
+ </div>
+</div>
+<script>
+$('div#main_menu').ready(function() {
+   let main_menu = MenuView.create('main');
+   main_menu.fetch(main_menu);
+   main_menu.show(main_menu);
+});
+</script>
+</div>
+<script language="javascript">
+</script>

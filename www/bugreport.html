@@ -1,0 +1,35 @@
+<html>
+ <head>
+  <title>Bug Report</title>
+  <link rel="stylesheet" href="css/screen.css"/>
+ </head>
+ <body>
+  <h1>Report a bug</h1>
+  <form id="bugreport" action="/cgi-bin/bugs.pl" method="post">
+   <formset name="bugreport">
+    <input type="hidden" name="act" value="report"/>
+    <label for="project">Project:</label>
+    <select id="project" name="project">
+     <option value="telekinesis">telekinesis</option>
+<!--
+     <option value="relayfish">relayfish</option>
+     <option value="stm32-repeater">stm32-repeater</option> -->
+    </select>
+    &nbsp;&nbsp;
+    <label for="type">Type:</label>
+    <select id="type" name="type">
+     <option value="bug">Bug Report</option>
+     <option value="freq">Feature Request</option>
+     <option value="support">Support Request</option>
+    </select>
+    <hr width="100%"/>
+    <label for="summary">Summary:</label><br/>
+    <input name="summary" id="summary" size="74" maxlength="200"/><br/>
+    <label for="report">Report Details</label><br/>
+    <textarea name="report" id="report" cols="80" rows="20"></textarea><br/>
+   </formset>
+   <input type="submit" value="Send"/>
+   <input type="reset" value="Clear"/>
+  </form>
+ </body>
+</html>

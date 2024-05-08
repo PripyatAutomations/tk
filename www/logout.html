@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <script src="js/jquery-3.6.0.min.js"></script>
+  <script>
+  $(document).ready(function() {
+     document.cookie.split(";").forEach(function(c) {
+         document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
+      });
+      window.localStorage.clear()
+      $('body').append("Local storage cleared, redirecting!");
+      var redir_url = "index.html";
+      try {
+         window.location.replace(redir_url);
+      } catch(e) {
+         window.location = redir_url;
+      }
+  });
+  </script>
+ </head>
+ <body>
+  <noscript>Please enable javascript to clear local storage!</noscript>
+  <a href="index.html">Click here if not redirected automatically</a><br/>
+ </body>
+</html>
