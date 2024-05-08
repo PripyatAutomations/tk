@@ -1,4 +1,4 @@
-#!/usr/bin/perl
+a#!/usr/bin/perl
 use strict;
 use warnings;
 use UUID::Tiny ':std';
@@ -15,7 +15,7 @@ my $ami_file = "/opt/telekinesis/etc/asterisk/manager.d/logout-cgi.conf";
 my $ari_file = "/opt/telekinesis/etc/asterisk/telekinesis/ari.$radio.conf";
 my $ari_passfile = "/opt/telekinesis/run/ari.$radio.pass";
 my $ari_user = "telekinesis_$radio";
-my $ari_pass = join'', map +(0..9,'a'..'z','A'..'Z')[rand(10+26*2)], 1..16;
+my $ari_pass = join'', map +(0..9,'a'..'z','A'..'Z')[rand(10+26*2)], 1..32;
 
 
 # Sort out permissions on /opt/telekinesis/etc/asterisk/telekinesis for dynamic configs by perl cgi
@@ -31,9 +31,10 @@ print $ari_fh "password = $ari_pass\n";
 close $ari_fh;
 chmod 0700, $ari_file;
 
+my $ami_secret = join'', map +(0..9,'a'..'z','A'..'Z')[rand(10+26*2)], 1..32;
 open (our $ami_fh, '>', $ami_file) or die("Can't open $ami_file for writing");
 print $ami_fh "[logout-cgi]\n";
-print $ami_fh "secret = tShCawPy2EY0iLtB\n";
+print $ami_fh "secret = ${ami_secret}\n";
 print $ami_fh "deny=0.0.0.0/0.0.0.0\n";
 print $ami_fh "permit=127.0.0.1/32\n";
 print $ami_fh "read = system,command,user,config,dialplan\n";
@@ -53,7 +54,7 @@ if (-e "/opt/telekinesis/var/run/asterisk/asterisk.pid") {
    my $astman = Asterisk::AMI->new(PeerAddr => '127.0.0.1',
                                    PeerPort => '5038',
                                    Username => 'logout-cgi',
-                                   Secret => 'tShCawPy2EY0iLtB');
+                                   Secret => '${ami_secret}');
    die "Unable to connect to asterisk" unless ($astman);
    $astman->send_action({ Action => 'Command', Command => 'module reload res_pjsip.so' });
    $astman->send_action({ Action => 'Command', Command => 'dialplan reload' });
