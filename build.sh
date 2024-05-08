@@ -6,3 +6,4 @@ cp src/toastr/build/toastr.js.map www/js
 cp src/toastr/build/toastr.min.js www/js
 cp src/toastr/build/toastr.min.css www/css
 mkdir -p log/asterisk
+mkdir -p var/run/asterisk

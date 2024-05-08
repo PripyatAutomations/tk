@@ -28,4 +28,5 @@ fi
 echo "* Fixing permissions..."
 
 echo "* Starting fastcgi-perl..."
-sudo -u ${FCGI_USER} env -i /opt/telekinesis/init.d/fcgi-perl start
+#sudo -u ${FCGI_USER} env -i /opt/telekinesis/init.d/fcgi-perl start
+sudo -u ${FCGI_USER} /opt/telekinesis/init.d/fcgi-perl start

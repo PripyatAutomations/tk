@@ -1,15 +1,18 @@
 # simple makefile to assist with developing and packaging this mess...
 PROJECT := telekinesis
 PREFIX := /opt/telekinesis
-db += data/rigs.db
-db += data/session.db
-db += data/users.db
+db += db/rigs.db
+db += db/session.db
+db += db/users.db
 VOICES_REPO := https://github.com/PripyatAutomations/Telekinesis-voices.git
 
 all: help
 
 showconf:
-	cat etc/telekinesis.yml 2>&1 | yq -C | less -R
+	cat etc/telekinesis.yaml | yq -C 2>&1 | less -R
+
+build:
+	./build.sh
 
 checkps:
 	ps auwwwx|egrep '(perl|nginx|rigctl)'|grep -v grep || true
@@ -57,13 +60,13 @@ download-voices:
 ##################
 # Database Tasks #
 ##################
-db: db-clean db-build
+#db: db-clean db-build
 
-db-build: ${db}
-	./boot.d/100-database.sh
+#db-build: ${db}
+#	./boot.d/100-database.sh
 
-data/%.db: sql/%.sql
-	sqlite3 $@ < $<
+#db/%.db: sql/%.sql
+#	sqlite3 $@ < $<
 
 #############
 # Installer #
@@ -94,8 +97,8 @@ declutter:
 
 distclean: db-clean clean
 
-db-clean:
-	${RM} -f ${db}
+#db-clean:
+#	${RM} -f ${db}
 
 ###########
 

@@ -1,3 +1,10 @@
 #!/bin/bash
-/usr/sbin/nginx -c /opt/telekinesis/etc/nginx.conf  || exit 1
-echo "Nginx started with pid $(cat run/nginx.pid)!"
+
+[ -z $UID ] || SUDO=sudo
+
+# generate config file
+$SUDO /opt/telekinesis/genconf/nginx.pl
+
+# Use the generated config
+$SUDO /usr/sbin/nginx -c /opt/telekinesis/run/nginx.conf  || exit 1
+echo "* Nginx started with pid $(cat run/nginx.pid)!"

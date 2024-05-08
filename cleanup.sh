@@ -1,19 +1,21 @@
 #!/bin/bash
 
+[ -z $UID ] || SUDO=sudo
+
 # Run stop script if there's pidfiles in run/
-[ -f ./run/*.pid ] && ./stop.sh
+[ -f ./run/nginx.pid ] && ./stop.sh
 
 echo "* Cleaning up log/lock/pid files"
-find ./run/ -type f -delete
-find ./log/ -type f -delete
-rm -f tmp/login.log
+$SUDO find ./run/ -type f -delete
+$SUDO find ./log/ -type f -delete
+$SUDO rm -f tmp/login.log
 
 echo "* Removing databases"
-find ./db/ -type f -name \*.sqlite -delete
+$SUDO find ./db/ -type f -name \*.sqlite -delete
 
 echo "* Cleaning up asterisk"
-rm -f etc/asterisk/telekinesis/users.*.conf
-rm -f etc/asterisk/telekinesis/radio.*.conf
-rm -f etc/asterisk/peers.d/*.conf
-mkdir -p log/asterisk
-find log/asterisk -type f -delete
+$SUDO rm -f etc/asterisk/telekinesis/users.*.conf
+$SUDO rm -f etc/asterisk/telekinesis/radio.*.conf
+$SUDO rm -f etc/asterisk/peers.d/*.conf
+$SUDO mkdir -p log/asterisk
+$SUDO find log/asterisk -type f -delete

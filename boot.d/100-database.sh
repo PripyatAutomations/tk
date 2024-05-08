@@ -34,6 +34,6 @@ fi
 echo "* Fixing permissions..."
 chown root:root /opt/telekinesis/run /opt/telekinesis/logs
 chmod 1777 /opt/telekinesis/run /opt/telekinesis/logs
-chown ${AST_USER}:fcgi-perl data/
-chmod 1775 data/
-chmod 0660 data/*.db
+chown ${AST_USER}:fcgi-perl db/
+chmod 1775 db/
+chmod 0660 db/*.sqlite
