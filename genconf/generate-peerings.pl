@@ -9,6 +9,7 @@
 
 use strict;
 use warnings;
+use POSIX qw(strftime);
 
 my $peerdir = '/opt/telekinesis/etc/asterisk/telekinesis/peerings.d';
 
@@ -32,10 +33,11 @@ sub generate_iax_peering {
    # Peering file we'll generate
    my $iax_pf = "${peerdir}/iax.${peername}.conf";
 
-   # If a file exists, rename it to .2024-05-02.bak suffix first
+   # If a file exists, rename it to .2024-05-02.06-22-01.bak suffix first
    if ( -e $iax_pf ) {
-      my $date = localtime->strftime('%Y-%m-%d');
-      my $new_fn = "$iax_pf.${date}.bak";
+      my $date = strftime '%Y-%m-%d.%H%M%S', localtime;
+      my $new_fn = "${iax_pf}.${date}.bak";
+      print "* Rename old config ${iax_pf} to ${new_fn}\n";
       rename($iax_pf, $new_fn);
    }
 
@@ -53,10 +55,11 @@ context=peer_${peername}
 secret=${iax_secret}
 allow=10.0.0.0/255.0.0.0
    ";
-   print "New config would be saved to: $iax_pf\n";
-   print "***\n";
-   print "$content\n";
-   print "***\n";
+
+   open (our $fh, '>', $iax_pf) or die("Can't open ${iax_pf} for writing! $!",);
+
+   print "* New config saved to: ${iax_pf}\n";
+   print $fh "${content}\n";
 }
 
 generate_iax_peering("N3RYB-1");
