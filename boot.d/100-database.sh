@@ -9,6 +9,9 @@ FCGI_GROUP=$CF_VAL
 get_val ".users.asterisk_user"
 AST_USER=$CF_VAL
 
+# Refresh the database
+./sbin/tk-updatedb
+
 echo "* Creating users/groups, if needed"
 getent group ${WWW_DB_GROUP} 2>&1 >/dev/null
 if [ $? -ne 0 ]; then

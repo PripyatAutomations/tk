@@ -32,3 +32,9 @@ sudo -u ${RIGCTL_USER} env -i /opt/telekinesis/init.d/rigctld start
 sudo -u ${RIGCTL_USER} env -i /opt/telekinesis/init.d/rigctl-wrapper start
 
 echo "**********"
+
+# Start rigctld websocket wrapper
+#./sbin/rigctl-wrapper.pl &
+#PID=$!
+#echo ${PID} > ./run/rigctl-wrapper.pid
+#echo "* rigctl-wrapper running as pid ${PID}"

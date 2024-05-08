@@ -22,3 +22,10 @@ my $conf_ext = "0";
 my $au_outdev = "";
 my $au_indev = "";
 #open (our $account_fh, '>', $account_file) or die("Can't open $account_file for writing");
+
+# XXX:This needs replaced with genconf ASAP
+#cat etc/nginx/nginx.conf | sed \
+#	-e s^%%ports.http%%^$HTTP_PORT^g \
+#	-e s^%%ports.https%%^$HTTPS_PORT^g \
+#	-e s^%%tk.rootdir%%^$(pwd)^g \
+#	> $(pwd)/run/nginx.conf
