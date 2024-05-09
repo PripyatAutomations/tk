@@ -42,7 +42,7 @@
       // Update countdown every second
       var countdownInterval = setInterval(function() {
           countdownDuration--;
-          $('#countdown').text('Countdown: ' + countdownDuration + ' seconds');
+          $('#countdown').text(countdownDuration + ' seconds');
           
           // Check if countdown is expired
           if (countdownDuration <= 0) {
@@ -55,7 +55,7 @@
   </script>
  </head>
  <body>
-  <div id="countwrap">Demo will auto play in: <span id="countdown"></span> seconds</div><br/>
+  <div id="countwrap">Demo will auto play in: <span id="countdown"></span></div><br/>
   <a href="demo.html">click here to play the demo now</a><br/>
   <a href="menu.html">click here to skip the demo for now</a><br/>
   <a href="#" id="disableintro">or click here to always skip intro</a><br/>
