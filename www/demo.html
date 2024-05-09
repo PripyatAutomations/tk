@@ -26,6 +26,49 @@
       // Allow user to skip annoying retro intro ;)
       var SkippedIntro = false;
 
+      // preload the audio file
+      var audio = new Audio("audio/dialup.ogg");
+
+      // update the display once sound stops playing
+//      audio.addEventListener("ended", function() {
+      setInterval(function() {
+         if (!SkippedIntro)  {
+            $('#dialup7').show("fast");
+            setTimeout(function() {
+               $('#shell1').show();
+               $('#shell2').show();
+            }, 750);
+                
+            setTimeout(function() {
+               $('#shell3').show();
+                $('#shell3').typeWrite({ content: "rtm/jklwest"});
+            }, 2500);
+
+            setTimeout(function() {
+               $('#shell4').show("fast");
+            }, 4100);
+
+            setTimeout(function() {
+               $('#shell5').show("fast");
+               $('#shell5').typeWrite({ content: "Welcome back, jklwest! You have new mail."});
+
+               setTimeout(function() {
+                  $('#shell6').show("fast");
+                  $('#shell6').typeWrite({ content: "jklwest@shell3:~> ", delay: 5});
+
+                  setTimeout(function() {
+                     $('#shell7').typeWrite({ content: "telekinesis", delay: 10});
+
+                     setTimeout(function() {
+                         window.location.href = 'menu.html';
+                     }, 627);
+                  }, 2050);
+               }, 1096);
+            }, 6120);
+         }
+      }, 1550);
+//      });
+
       function setCookie(cookieName, cookieValue, expiryDays) {
          const date = new Date();
          date.setTime(date.getTime() + (expiryDays * 24 * 60 * 60 * 1000));
@@ -36,11 +79,6 @@
       function skipIntro() {
          SkippedIntro = true;
 
-         if (typeof audio !== 'undefined') {
-            audio.stop();
-         }
-
-         // set a cookie to skip it next time, too...
          setCookie('skipIntro', 'true', 30); // Cookie expires in 30 days
          window.location.href = 'menu.html';
       };
@@ -60,35 +98,7 @@
       });
 
       $('#play').on('click', function() {
-         var audio = new Audio("audio/dialup.ogg");
-
-         audio.addEventListener("ended", function() {
-            if (!SkippedIntro)  {
-               $('#dialup7').show("fast");
-               setTimeout(function() {
-                  $('#shell1').show();
-                  $('#shell2').show();
-               }, 750);
-                   
-               setTimeout(function() {
-                  $('#shell3').show();
-                   $('#shell3').typeWrite({ content: "rtm/jklwest"});
-               }, 2500);
-
-               setTimeout(function() {
-                  $('#shell4').show("fast");
-               }, 4100);
-
-               setTimeout(function() {
-                  $('#shell5').show("fast");
-                  setTimeout(function() {
-                     skipIntro();
-                  }, 10000);
-               }, 6120);
-            }
-         });
-
-         // hide play button
+         // hide play button & container
          $(this).hide(0);
          $('#playWrap').hide(0);
 
@@ -100,61 +110,73 @@
          $('#local').typeWrite({content: "picocom /dev/ttyS0"});
 
          setTimeout(function() {
-            $('#local2').show("fast");
+            $('#local2').show(0);
 
             setTimeout(function() {
                if (!SkippedIntro) {
-                  $('#dialup2').show("fast");
+                  $('#dialup2').show(0);
                   $('#dialup2').typeWrite({content: "+++ATZ"});
                }
             }, 500);
          }, 1000);
          setTimeout(function() {
             if (!SkippedIntro) {
-               $('#dialup3').show("fast");
+               $('#dialup3').show(0);
                setTimeout(function() {
-                  $('#dialup5').show("fast");
-                  $('#dialup6').show("slow");
-                  $('#dialup6').typeWrite({content:'ATDT15702340003'});
+                  $('#dialup5').show(0);
                   setTimeout(function() {
-                     audio.play();
-                  }, 705);
+                     $('#dialup6').show(0);
+                     $('#dialup6').typeWrite({content:'ATDT15702340003'});
+                     setTimeout(function() {
+                        audio.play();
+                     }, 705);
+                  }, 475);
                }, 500);
             }
          }, 2150);
       });
    });
   </script>
-  <div id="wrappedcontent" class="ow_scanline">
-   <div id="skipIntro">Click here or Press ESC to Skip Intro</div><br/>
-   <div id="playWrap">
-    Due to browser restrictions, please click the button to play the demo<br/>
-    <input type="button" id="play" value="Click to play"/>
-   </div>
-   <div id="dialup1">
-     fsckit<green>@</green>toaster<green>:</green>~<red>&gt; </red><span id="local"></span><br/>
-     <span id="local2">Opened /dev/ttyS0 at 115200bps</span>
-    </div>
-    <div id="dialup2"></div>
-    <div id="dialup3"></div>
-    <div id="dialup4"></div>
-    <div id="dialup5">OK</div>
-    <div id="dialup6"></div>
-    <div id="dialup7">CONNECT 57600</div>
-    <div id="shell1">
-     <pre>
-     Security check OK, allowing caller.
+  <div id="xwrap">
+   <div class="crt-monitor">
+    <div id="crt-screen">
+     <div id="wrappedcontent" class="ow_scanline">
+      <div id="skipIntro">Click here or Press ESC to Skip Intro (and disable)</div><br/>
+      <div id="playWrap">
+       Due to browser restrictions, a user interaction must occur to play sounds, therefore
+       <input type="button" id="play" value="Click HERE to play demo!"/>
+      </div>
+      <div id="dialup">
+       <div id="dialup1">
+         fsckit@toaster:~&gt; <span id="local"></span><br/>
+         <span id="local2">Opened /dev/ttyS0 at 115200bps</span>
+       </div>
+       <div id="dialup2"></div>
+       <div id="dialup3"></div>
+       <div id="dialup4"></div>
+       <div id="dialup5">OK</div>
+       <div id="dialup6"></div>
+       <div id="dialup7">CONNECT 57600</div>
+       <div id="shell1">
+        <pre>
+        Security check OK, allowing caller.
 
-     Thank you for calling The Underground!
-          
-     We do not recognize the line you are calling from, please login...
-     </pre>
-    <br/><br/>
+        Thank you for calling The Underground!
+             
+        We do not recognize the line you are calling from, please login...
+        </pre>
+       <br/><br/>
+       </div>
+       <span id="shell2">Login:</span>
+       <span id="shell3"></span><br/>
+       <span id="shell4">Password:</span><br/>
+       <div id="shell5"><br/></div>
+       <div id="shell67">
+        <span id="shell6"></span>&nbsp;<span id="shell7"></span>
+       </div>
+      </div>
+     </div>
     </div>
-    <span id="shell2">Login:</span>
-    <span id="shell3"></span><br/>
-    <span id="shell4">Password:</span><br/>
-    <div id="shell5"><br/>Welcome back, jklwest! You have new mail.</div>
    </div>
   </div>
  </body>

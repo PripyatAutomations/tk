@@ -11,19 +11,17 @@
   <meta name="viewport" content="width=device-width; initial-scale=1"/>
   <script>
    $(document).ready(function() {
+      var countdown = 5;
+
       function checkCookie(cookieName) {
          return document.cookie.split(';').some((item) => item.trim().startsWith(cookieName + '='));
       }
 
-      function block_intro() {
-         setCookie('skipIntro', 'true', 30); // Cookie expires in 30 days
+      // Check if the cookie exists and quickly bail to the menu, if so.
+      if (checkCookie('skipIntro')) {
+         window.location.href = 'menu.html';
       }
 
-      $('#disableintro').click(function() {
-         block_intro();
-      });
-
-      // Function to set a cookie
       function setCookie(cookieName, cookieValue, expiryDays) {
          const date = new Date();
          date.setTime(date.getTime() + (expiryDays * 24 * 60 * 60 * 1000));
@@ -31,33 +29,36 @@
          document.cookie = cookieName + '=' + cookieValue + ';' + expires + ';path=/';
       }
 
-      // Check if the cookie exists
-      if (checkCookie('skipIntro')) {
-         window.location.href = 'menu.html';
-      }
-
-      // Set the countdown duration in seconds
-      var countdownDuration = 5;
+      $('a#disableintro').click(function() {
+         alert("To re-enable seeing the demo at start, just click Play dialup intro in menu!");
+         setCookie('skipIntro', 'true', 30); // Cookie expires in 30 days
+         window.location.href = 'demo.html';
+      });
 
       // Update countdown every second
-      var countdownInterval = setInterval(function() {
-          countdownDuration--;
-          $('#countdown').text(countdownDuration + ' seconds');
+      var ci = setInterval(function() {
+          countdown--;
+          $('#countdown').text(countdown + ' seconds');
           
           // Check if countdown is expired
-          if (countdownDuration <= 0) {
-              clearInterval(countdownInterval); // Stop the countdown
-              window.location.href = 'demo.html'; // Redirect to menu.html
+          if (countdown <= 0) {
+              clearInterval(ci);
+              window.location.href = 'demo.html';
           }
       }, 1000); // 1000 milliseconds = 1 second
-
   });
   </script>
  </head>
  <body>
-  <div id="countwrap">Demo will auto play in: <span id="countdown"></span></div><br/><br/>
-  <a href="demo.html">click here to play the demo now</a><br/><br/>
-  <a href="menu.html">click here to skip the demo for now</a><br/><br/>
-  <a href="#" id="disableintro">or click here to always skip intro</a><br/>
+  <div class="crt-monitor">
+   <div id="crt-screen">
+    <div id="wrappedcontent" class="ow_scanline">
+     <div id="countwrap">Demo will auto play in: <span id="countdown"></span></div><br/><br/>
+     <a href="demo.html">click here to play the demo now</a><br/><br/>
+     <a href="menu.html">click here to skip the demo for now</a><br/><br/>
+     <a href="#" id="disableintro">or click here to always skip intro</a><br/>
+    </div>
+   </div>
+  </div>
  </body>
 </html>

@@ -1,0 +1,9 @@
+[submodule "ext/Chroma-Hash"]
+	path = ext/Chroma-Hash
+	url = https://github.com/mattt/Chroma-Hash.git
+[submodule "ext/xterm.js"]
+	path = ext/xterm.js
+	url = https://github.com/xtermjs/xterm.js.git
+[submodule "ext/toastr"]
+	path = ext/toastr
+	url = https://github.com/CodeSeven/toastr.git

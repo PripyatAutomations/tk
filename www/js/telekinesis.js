@@ -87,7 +87,9 @@ function do_login() {
    var $pass = $('div#login input#pass').val().trim();
 
    if ($user === "" || $pass === "") {
-      alert("You must specify a callsign and password!");
+      console.log("You must specify a callsign and password!");
+      toastr["error"]("You must specify a callsign and password!", "ERROR!");
+      $('div#login input#callsign').focus();
       return;
    }
 
@@ -108,6 +110,7 @@ function do_login() {
 }
 
 var $ch;
+
 $(document).ready(function() {
    gState.loaded = true;
 
@@ -180,10 +183,12 @@ $(document).ready(function() {
    $('span#login_test').click(function() {
       $('input#callsign').val('TEST');
       $('input#pass').val('test');
+      do_login();
    });
    $('span#login_nettest').click(function() {
       $('input#callsign').val('NETTEST');
       $('input#pass').val('natasha');
+      do_login();
    });
 
    $('input#callsign').keyup(function() {
@@ -219,7 +224,8 @@ $(document).ready(function() {
          $('input[type=reset]').focus();
       }
    });
-/**/
+
+/*
    $(document).on('keypress', function(e) {
       console.log("keypress: ", e);
    });
@@ -229,7 +235,7 @@ $(document).ready(function() {
    $(document).on('keyup', function(e) {
       console.log("keyup: ", e);
    });
-/**/
+*/
 
    $('#settings').click(function() {
       if (gState.menu_open) {

@@ -9,61 +9,64 @@
   <meta name="description" content="dialup intro"/>
   <meta name="viewport" content="width=device-width; initial-scale=1"/>
  </head>
- <body class="ow_scanline">
+ <body>
   <script>
-     $(document).ready(function () {
-         // Great success, we have fully loaded!
-         var bar = $('#load_progress');
-         bar.val(100);
-         $('#loading').fadeOut("slow");
-         $('#viewport').fadeIn("slow");
-         $('#resetIntro').click(function() {
-            document.cookie = "skipIntro=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-            console.log("Redirecting to demo at user request!");
-            window.location.href = "demo.html";
-         });
+  // Great success, we have fully loaded!
+  $(document).ready(function () {
+     var bar = $('#load_progress');
+     bar.val(100);
+     $('#loading').fadeOut("slow");
+     $('#viewport').fadeIn("slow");
+     $('#resetIntro').click(function() {
+        // delete the auto-skip cookie
+        document.cookie = "skipIntro=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        console.log("Redirecting to demo at user request!");
+        window.location.href = "demo.html";
      });
+  });
   </script>
-  <style>
-   pre { margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px; }
-  </style>
-  <div id="loading">
-   <div id="loading_modal">
-    Loading...<br/>
-    <meter id="load_progress" low="50" high="80" optimum="100" title="%" min="0" max="100" value="30"></meter>
-    <noscript>
-    Unfortunately, either your browser does not support javascript or it is
-    disabled. You will not be able to view our website without it. Sorry!
-    </noscript>
-   </div>
-  </div>
-  <div id="viewport">
-   <header><left>TELEKINESIS(1)</left><middle>remote rig access</middle><right>TELEKINESIS(1)</right></header>
-   <br/>
-   <section id="man_name"><b>NAME</b><br/>
-    <indent>TELEKINESIS</indent>
-   </section>
-   <section id="man_synopsis"><b>SYNOPSIS</b><br/>
-    <indent>A new take on remote access to amateur radios</indent>
-   </section>
-   <section id="man_description"><b>DESCRIPTION</b><br/>
-    <indent>
-    Telekinesis provides a secure way to remotely access your amateur radio rigs or share access with other users.<br/>
-    </indent>
-   </section>
-   <section id="man_seealso"><b>SEE ALSO</b><br/>
-    <indent>
-     <ul class="killmargin">
-      <li><a href="desktop.html">Desktop Site</a></li>
-      <li><a href="mobile.html">Mobile Site</a></li>
-      <li><a href="#" id="resetIntro">Enable demo</a></li>
-     </uL>
-    </indent>
-   </section>
-   <smallprint class="killmargin">
-    Hosted by <a href="https://istabpeople.com">IStabPeople.com</a>
-   </smallprint>
-   <footer><left>TELEKINESIS(1)</left><middle>remote rig access</middle><right>TELEKINESIS(1)</right></footer>
-  </div>
+  <div class="crt-monitor">
+   <div id="crt-screen">
+    <div id="wrappedcontent" class="ow_scanline">
+     <div id="loading">
+      <div id="loading_modal">
+       Loading...<br/>
+       <meter id="load_progress" low="50" high="80" optimum="100" title="%" min="0" max="100" value="30"></meter>
+       <noscript>
+       Unfortunately, either your browser does not support javascript or it is
+       disabled. You will not be able to view our website without it. Sorry!
+       </noscript>
+      </div>
+     </div>
+     <header><left>TELEKINESIS(1)</left><middle>remote rig access</middle><right>TELEKINESIS(1)</right></header>
+     <br/>
+     <section id="man_name"><b>NAME</b><br/>
+      <indent>TELEKINESIS</indent>
+     </section>
+     <section id="man_synopsis"><b>SYNOPSIS</b><br/>
+      <indent>Secure remote access to amateur radios via IP</indent>
+     </section>
+     <section id="man_description"><b>DESCRIPTION</b><br/>
+      <indent>
+      Telekinesis provides a secure way to remotely access your amateur radio rigs or share access with other users.<br/>
+      </indent>
+     </section>
+     <section id="man_seealso"><b>SEE ALSO</b><br/>
+      <indent>
+       <ul class="killmargin">
+        <li><a href="desktop.html">Modern Site</a></li>
+        <li><a href="minimal.html">Minimal Site (NYI)</a></li>
+        <li><a href="#" id="resetIntro">Play dialup intro</a></li>
+       </uL>
+      </indent>
+     </section>
+     <smallprint class="killmargin">
+      Hosted by <a href="https://istabpeople.com">IStabPeople.com</a> - the ISP where sometimes
+      <a href="https://www.wolframalpha.com/input?i=2469958312622%2F2821109907455+to+base36">VIOLENCE</a> is the answer
+     </smallprint>
+     <footer><left>TELEKINESIS(1)</left><middle>remote rig access</middle><right>TELEKINESIS(1)</right></footer>
+    </div><!-- #wrappedcontent -->
+   </div><!-- #crt-screen -->
+  </div><!-- .crt-monitor -->
  </body>
 </html>

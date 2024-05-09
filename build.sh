@@ -1,5 +1,5 @@
 #!/bin/bash
-cp src/Chroma-Hash/jquery.chroma-hash.js www/js
+cp ext/Chroma-Hash/jquery.chroma-hash.js www/js
 cp src/escapes.js/escapes.js www/js
 cp src/escapes.js/escapes.min.js www/js
 cp src/toastr/build/toastr.js.map www/js

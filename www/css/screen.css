@@ -204,42 +204,43 @@ div#status span {
    pointer-events: none;
 }
 
-#settings {
+.setbtn {
     position: absolute;
-    bottom: 0em;
-    left: 0.2em;
+    bottom: 0.2em;
+    height: 1.35em;
+    margin: 0px;
     border-radius: 10px;
-    background: #1f4040;
-    border: 1px solid #3f6060;
     font-size: 1.4em;
-    padding-bottom: 0px;
-    padding-top: 0.3em;
+    padding-bottom: 0.2px;
+    padding-top: 0.2em;
     padding-left: 0.3em;
     padding-right: 0.3em;
-    height: 1.5em;
-    margin: 0px;
+    background: #2c2c2c;
+    border: 1px solid #4c4c4c;
+}
+
+#settings {
+    left: 0.2em;
+    background: #1f4040;
+    border: 1px solid #4c4c4;
     width: 6em;
 }
 
-#settings:hover {
-    background: #86C5C5;
-    border: 1px solid #459393;
+#s_online {
+    left: 7.2em;
+    background: #990000;
+    border: 1px solid #00ff00;
+}
+    
+#s_bitrate {
+    right: 0.2em;
+    text-align: center;
+    width: 12em;
 }
 
-#s_online {
-    position: absolute;
-    bottom: 0em;
-    left: 7.2em;
-    border-radius: 10px;
-    background: #990000;
-    border: 1px solid #ff0000;
-    font-size: 1.4em;
-    padding-bottom: 0px;
-    padding-top: 0.3em;
-    padding-left: 0.3em;
-    padding-right: 0.3em;
-    height: 1.5em;
-    margin: 0px;
+#settings:hover {
+    background: #6C5C5;
+    border: 1px solid #459393;
 }
 
 #s_online:hover {
@@ -250,24 +251,6 @@ div#status span {
 .online {
     background: #009900 !important;
     border: 1px solid #00ff00 !important;
-}
-    
-#s_bitrate {
-    position: absolute;
-    bottom: 0em;
-    right: 0.2em;
-    background: #009900;
-    border: 1px solid #00ff00;
-    border-radius: 10px;
-    font-size: 1.4em;
-    padding-bottom: 0px;
-    padding-top: 0.3em;
-    padding-left: 0.3em;
-    padding-right: 0.3em;
-    text-align: center;
-    margin: 0px;
-    height: 1.5em;
-    width: 12em;
 }
 
 span#login_test, span#login_nettest {
