@@ -43,8 +43,6 @@ inc/
 /*.zip
 
 # external bits that will come from submodules
-services/voices/
-services/voices/*
 sbin/astdb2bdb
 sbin/astdb2sqlite3
 sbin/astversion
@@ -89,8 +87,6 @@ var/lib/*
 logs/*
 logs/asterisk/*
 .empty/*
-voices/*
-voices/
 *.old/*
 
 # auto-generated configs

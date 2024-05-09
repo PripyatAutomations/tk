@@ -16,3 +16,6 @@
 [submodule "ext/asterisk"]
 	path = ext/asterisk
 	url = https://github.com/asterisk/asterisk.git
+[submodule "voices"]
+	path = voices
+	url = git@github.com:PripyatAutomations/Telekinesis-voices.git
