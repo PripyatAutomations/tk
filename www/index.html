@@ -47,7 +47,7 @@
           // Check if countdown is expired
           if (countdownDuration <= 0) {
               clearInterval(countdownInterval); // Stop the countdown
-              window.location.href = '/demo.html'; // Redirect to menu.html
+              window.location.href = 'demo.html'; // Redirect to menu.html
           }
       }, 1000); // 1000 milliseconds = 1 second
 
@@ -55,9 +55,9 @@
   </script>
  </head>
  <body>
-  <div id="countwrap">Demo will auto play in: <span id="countdown"></span></div><br/>
-  <a href="demo.html">click here to play the demo now</a><br/>
-  <a href="menu.html">click here to skip the demo for now</a><br/>
+  <div id="countwrap">Demo will auto play in: <span id="countdown"></span></div><br/><br/>
+  <a href="demo.html">click here to play the demo now</a><br/><br/>
+  <a href="menu.html">click here to skip the demo for now</a><br/><br/>
   <a href="#" id="disableintro">or click here to always skip intro</a><br/>
  </body>
 </html>
