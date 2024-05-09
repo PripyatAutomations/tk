@@ -7,3 +7,6 @@
 [submodule "ext/toastr"]
 	path = ext/toastr
 	url = https://github.com/CodeSeven/toastr.git
+[submodule "ext/cron"]
+	path = ext/cron
+	url = https://github.com/vixie/cron.git

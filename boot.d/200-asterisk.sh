@@ -31,13 +31,13 @@ echo "* Configuring: asterisk..."
 /opt/telekinesis/genconf/asterisk.pl
 
 echo "* Creating directories..."
-mkdir -p /opt/telekinesis/logs/asterisk
+mkdir -p /opt/telekinesis/logs/asterisk/
 for i in cdr-csv/ cdr-custom/ cel-custom/; do
-   mkdir -p /opt/telekinesis/var/log/asterisk/$i;
+   mkdir -p /opt/telekinesis/logs/asterisk/$i;
 done
 
 echo "* Fixing permissions..."
-ast_dirs="etc/asterisk logs/asterisk var/cache/asterisk var/lib/asterisk var/run/asterisk var/spool/asterisk var/log/asterisk"
+ast_dirs="etc/asterisk logs/asterisk var/cache/asterisk var/lib/asterisk run/asterisk var/spool/asterisk"
 real_ast_dirs=""
 for i in $ast_dirs; do
     real_ast_dirs="/opt/telekinesis/$i $real_ast_dirs"

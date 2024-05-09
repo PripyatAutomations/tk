@@ -1,4 +1,4 @@
-/opt/telekinesis/var/log/asterisk/*.log /opt/telekinesis/var/log/asterisk/queue_log /opt/telekinesis/var/log/asterisk/mmlog {
+/opt/telekinesis/logs/asterisk/*.log /opt/telekinesis/logs/asterisk/queue_log /opt/telekinesis/logs/asterisk/mmlog {
 	weekly
 	missingok
 	rotate 52
