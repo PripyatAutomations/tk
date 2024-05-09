@@ -1,10 +1,12 @@
-run/*
-log/*
+bin/crontab
+sbin/cron
 db/*.sqlite
 db/data/users.sql
 src/Chroma-Hash/.git/*
 etc/config.sh
 etc/letsencrypt/*
+run/*
+log/*
 !Build/
 .last_cover_stats
 /META.yml

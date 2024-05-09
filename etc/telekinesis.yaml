@@ -1,4 +1,11 @@
 --- # telekinesis configuration
+# Node setup
+node:
+    callsign:           N0CALL
+    ssid:               1
+    hostname:		N0CALL.ham.istabpeople.com
+    allow_old_proto:    false
+
 # setup users/groups for the various subprocesses...
 users:
     ari_user:		rigctl

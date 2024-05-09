@@ -5,3 +5,10 @@ Clean this mess up! We've cobbled pieces of several of my projects into one tree
 * Add disconnect button
 * cgi-bin has hardcode passwords!
 * genconf/baresip-backend.pl hardcoded hostname
+
+-----------
+* Packet mode interface using xterm.js
+
+* Directed net (voice) mode similar to irc +m channels
+  - Only net control and +v can talk
+  - Can "raise hand" to ask for voice during idle timeslot
