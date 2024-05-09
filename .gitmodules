@@ -10,3 +10,9 @@
 [submodule "ext/cron"]
 	path = ext/cron
 	url = https://github.com/vixie/cron.git
+[submodule "ext/chan-sccp"]
+	path = ext/chan-sccp
+	url = https://github.com/chan-sccp/chan-sccp.git
+[submodule "ext/asterisk"]
+	path = ext/asterisk
+	url = https://github.com/asterisk/asterisk.git

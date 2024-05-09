@@ -4,7 +4,7 @@ Peering
 * Wireguard tunnel(s) established to peers
 * Keypairs are generated for the session
 * Asterisk configuration is generated & keypairs exchanged
-  - etc/asterisk/peers.d/{callsign}
+  - etc/asterisk/telekinesis/peers.d/{callsign}
 
 ----------
 Voice Path

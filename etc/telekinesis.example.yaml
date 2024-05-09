@@ -32,6 +32,8 @@ ports:
     http:	8000
     https:	8443
 #    http_bind_addr: 127.0.0.1
+#    iax2_bind:	127.0.0.1
+    iax2_bind:	4569
     rigctl_wrapper: 18001
     rigctl_wrapper_bind: 127.0.0.1
     asterisk_http: 8088

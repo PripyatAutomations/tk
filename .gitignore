@@ -2,7 +2,6 @@ bin/crontab
 sbin/cron
 db/*.sqlite
 db/data/users.sql
-src/Chroma-Hash/.git/*
 etc/telekinesis.yaml
 etc/letsencrypt/*
 run/*
@@ -87,29 +86,16 @@ var/spool/*
 var/run/*
 var/log/*
 var/lib/*
-src/ext/*
-src/asterisk/*
-src/ardop/*
-src/chan-sccp/*
 logs/*
 logs/asterisk/*
 .empty/*
 voices/*
 voices/
 *.old/*
-src/jquery.terminal
-src/xterm.js
-src/Chroma-Hash
-src/toastr
-src/escapes.js
-src/jquery.terminal/*
-src/xterm.js/*
-src/Chroma-Hash/*
-src/toastr/*
-src/escapes.js/*
 
 # auto-generated configs
 etc/asterisk/telekinesis/*.conf
 etc/asterisk/telekinesis/*.bak
 etc/asterisk/telekinesis/peerings.d/*.conf
 etc/asterisk/telekinesis/peerings.d/*.bak
+etc/asterisk/manager.d/logout-cgi.conf

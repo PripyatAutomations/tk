@@ -69,4 +69,4 @@ if (defined $exp_query) {
 #   print "* Expired $rows sessions\n";
 }
 
-# XXX: query for each config that exists in etc/asterisk/net/(users|radios).*.conf and delete if not in session db
+# XXX: query for each config that exists in etc/asterisk/telekinesis/(users|radios).*.conf and delete if not in session db

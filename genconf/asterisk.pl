@@ -11,7 +11,7 @@ use File::Path qw(make_path remove_tree);
 my $ast_user = "asterisk";
 my $fcgi_perl_group = "fcgi-perl";
 my $radio = 'radio0';
-my $ami_file = "/opt/telekinesis/etc/asterisk/manager.d/logout-cgi.conf";
+my $ami_file = "/opt/telekinesis/etc/asterisk/telekinesis/manager.logout-cgi.conf";
 my $ari_file = "/opt/telekinesis/etc/asterisk/telekinesis/ari.$radio.conf";
 my $ari_passfile = "/opt/telekinesis/run/ari.$radio.pass";
 my $ari_user = "telekinesis_$radio";
@@ -49,7 +49,7 @@ close $aripass_fh;
 chmod 0700, $ari_passfile;
 
 # Is asterisk running?
-if (-e "/opt/telekinesis/var/run/asterisk/asterisk.pid") {
+if (-e "/opt/telekinesis/run/asterisk/asterisk.pid") {
    # reload pjsip module in asterisk
    my $astman = Asterisk::AMI->new(PeerAddr => '127.0.0.1',
                                    PeerPort => '5038',
