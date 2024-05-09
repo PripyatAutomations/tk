@@ -30,8 +30,7 @@
       var audio = new Audio("audio/dialup.ogg");
 
       // update the display once sound stops playing
-//      audio.addEventListener("ended", function() {
-      setInterval(function() {
+      audio.addEventListener("ended", function() {
          if (!SkippedIntro)  {
             $('#dialup7').show("fast");
             setTimeout(function() {
@@ -66,8 +65,7 @@
                }, 1096);
             }, 6120);
          }
-      }, 1550);
-//      });
+      });
 
       function setCookie(cookieName, cookieValue, expiryDays) {
          const date = new Date();
