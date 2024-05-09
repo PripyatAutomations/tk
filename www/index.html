@@ -19,6 +19,10 @@
          setCookie('skipIntro', 'true', 30); // Cookie expires in 30 days
       }
 
+      $('#disableintro').click(function() {
+         block_intro();
+      });
+
       // Function to set a cookie
       function setCookie(cookieName, cookieValue, expiryDays) {
          const date = new Date();
@@ -30,11 +34,10 @@
       // Check if the cookie exists
       if (checkCookie('skipIntro')) {
          window.location.href = 'menu.html';
-      } else {
-         window.location.href = 'demo.html';
       }
+
       // Set the countdown duration in seconds
-      var countdownDuration = 60;
+      var countdownDuration = 5;
 
       // Update countdown every second
       var countdownInterval = setInterval(function() {
@@ -44,19 +47,17 @@
           // Check if countdown is expired
           if (countdownDuration <= 0) {
               clearInterval(countdownInterval); // Stop the countdown
-              window.location.href = '/menu.html'; // Redirect to menu.html
+              window.location.href = '/demo.html'; // Redirect to menu.html
           }
       }, 1000); // 1000 milliseconds = 1 second
 
-      $('#disableintro').click(function() {
-         block_intro();
-      });
   });
   </script>
  </head>
  <body>
-  <div id="countwrap">Auto-skipping demo in:<span id="countdown"></span></div>
-   <a href="demo.html">Click here to play the demo</a><br/>
-   <a href="#" id="disableintro">Always skip intro</a><br/>
+  <div id="countwrap">Demo will auto play in: <span id="countdown"></span> seconds</div><br/>
+  <a href="demo.html">click here to play the demo now</a><br/>
+  <a href="menu.html">click here to skip the demo for now</a><br/>
+  <a href="#" id="disableintro">or click here to always skip intro</a><br/>
  </body>
 </html>
