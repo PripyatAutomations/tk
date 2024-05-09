@@ -1,5 +1,6 @@
 #!/bin/bash
 
+. /opt/telekinesis/lib/config.sh
 [ -z $UID ] || SUDO=sudo
 
 cd /opt/telekinesis

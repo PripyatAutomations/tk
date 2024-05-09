@@ -4,7 +4,7 @@
    exit 1
 }
 
-. /opt/telekinesis/etc/config.sh
+. /opt/telekinesis/lib/config.sh
 
 echo "* updating submodules..."
 git submodule init

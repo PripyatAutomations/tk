@@ -3,7 +3,7 @@
 # Here we startup an Xvnc instance, put flrig into it
 # and make it accessible via http, if desired.
 #
-#. /opt/telekinesis/etc/config.sh
+. /opt/telekinesis/lib/config.sh
 
 WM=xfce4-session
 WIN_SZ=1024x768

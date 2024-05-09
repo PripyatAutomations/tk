@@ -1,5 +1,5 @@
 #!/bin/bash
-#. /opt/telekinesis/etc/config.sh
+. /opt/telekinesis/lib/config.sh
 
 killall -TERM flrig rigctld
 (sleep 5; rigctld  -m 4 -P RIG -t 4532 </dev/null 2>&1) &

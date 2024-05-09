@@ -3,7 +3,7 @@ sbin/cron
 db/*.sqlite
 db/data/users.sql
 src/Chroma-Hash/.git/*
-etc/config.sh
+etc/telekinesis.yaml
 etc/letsencrypt/*
 run/*
 log/*

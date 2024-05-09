@@ -3,6 +3,10 @@
 # This script will fetch all the various bits
 ##
 # Don't even try it yet.. It's definitely NOT ready, as it hasn't been fully merged - 20231112
+. /opt/telekinesis/lib/config.sh
+
+[ -z "$UID" ] && SUDO=sudo
+
 CACHEDIR=/home/cache
 
 function error {

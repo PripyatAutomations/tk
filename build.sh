@@ -1,4 +1,6 @@
 #!/bin/bash
+. /opt/telekinesis/lib/config.sh
+
 [ -z "$UID" ] || SUDO=sudo
 
 cp ext/Chroma-Hash/jquery.chroma-hash.js www/js
