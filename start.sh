@@ -13,8 +13,10 @@ if [ -f ./run/nginx.pid ]; then
    exit 1
 fi
 
+# Rebuild configuration
 $SUDO ./build.sh
 
+# And start stuff...
 for i in boot.d/*; do
    if [ -x "$i" ]; then
       echo "Starting $i"

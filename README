@@ -9,3 +9,6 @@ Run ./build.sh
 To start use ./startup.sh
 To stop use  ./stop.sh
 To cleanup before rebuilding use ./cleanup.sh
+
+--------
+* boot.d and init.d really do need merged

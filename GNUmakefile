@@ -1,9 +1,9 @@
 # simple makefile to assist with developing and packaging this mess...
 PROJECT := telekinesis
 PREFIX := /opt/telekinesis
-db += db/rigs.db
-db += db/session.db
-db += db/users.db
+#db += db/rigs.db
+#db += db/session.db
+#db += db/users.db
 VOICES_REPO := https://github.com/PripyatAutomations/Telekinesis-voices.git
 
 all: help
