@@ -17,6 +17,11 @@
          bar.val(100);
          $('#loading').fadeOut("slow");
          $('#viewport').fadeIn("slow");
+         $('#resetIntro').click(function() {
+            document.cookie = "skipIntro=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+            console.log("Redirecting to demo at user request!");
+            window.location.href = "demo.html";
+         });
      });
   </script>
   <style>
@@ -51,6 +56,7 @@
      <ul class="killmargin">
       <li><a href="desktop.html">Desktop Site</a></li>
       <li><a href="mobile.html">Mobile Site</a></li>
+      <li><a href="#" id="resetIntro">Enable demo</a></li>
      </uL>
     </indent>
    </section>
