@@ -24,4 +24,5 @@ done
 
 
 echo "* Your node should now be reachable over the following interfaces:"
-/sbin/ip addr show
+/sbin/ip addr show|egrep '(mtu|inet)'
+

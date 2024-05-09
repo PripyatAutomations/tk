@@ -19,3 +19,6 @@ $SUDO rm -f etc/asterisk/telekinesis/radio.*.conf
 $SUDO rm -f etc/asterisk/peers.d/*.conf
 $SUDO mkdir -p log/asterisk
 $SUDO find log/asterisk -type f -delete
+
+echo "* Cleaning system..."
+$SUDO find run/ -type f -delete
