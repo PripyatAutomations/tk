@@ -12,15 +12,20 @@ use Digest::SHA qw(sha256);
 use Asterisk::AMI;
 no warnings qw(Asterisk::AMI);
 
-open my $log, '>>', "/opt/telekinesis/tmp/login.log" or die "Unable to open tmp/login.log: $!\n";
+my $radio = 'radio0';
+my $ami_file = "/opt/telekinesis/etc/asterisk/telekinesis/manager.logout-cgi.conf";
+my $ari_file = "/opt/telekinesis/etc/asterisk/telekinesis/ari.$radio.conf";
+my $ari_passfile = "/opt/telekinesis/run/ari.$radio.pass";
+
+open my $log, '>>', "/opt/telekinesis/tmp/login.log" or warn "Unable to open tmp/login.log: $!\n";
 
 print "Content-type: text/json\n\n";
 
-#foreach my $key (sort(keys(%ENV))) {
-##    if ($key =~ m/SERVER_/) {
-#       print $log "$key = $ENV{$key}\n";
-##    }
-#}
+foreach my $key (sort(keys(%ENV))) {
+    if ($key =~ m/SERVER_/) {
+       print $log "$key = $ENV{$key}\n";
+    }
+}
 
 my $cgi = CGI->new();
 my $frm_callsign = $cgi->param("callsign");
@@ -66,8 +71,8 @@ if (not defined $frm_pass) {
 }
 
 # users database
-my $db_path = "/opt/telekinesis/data/users.db";
-my $db_sql = "/opt/telekinesis/sql/users.sql";
+my $db_path = "/opt/telekinesis/db/users.db";
+my $db_sql = "/opt/telekinesis/db/schema/users.sqlite3.sql";
 my $db_dsn = "DBI:SQLite:dbname=$db_path";
 my $db_user = "";
 my $db_pass = "";
@@ -75,8 +80,8 @@ my $dbh;
 my $db_empty = 0;
 
 # session database
-my $sess_path = "/opt/telekinesis/data/users.db";
-my $sess_sql = "/opt/telekinesis/sql/user.sql";
+my $sess_path = "/opt/telekinesis/db/users.db";
+my $sess_sql = "/opt/telekinesis/db/schema/users.sqlite3.sql";
 my $ses_dsn = "DBI:SQLite:dbname=$sess_path";
 my $sess_user = "";
 my $sess_pass = "";

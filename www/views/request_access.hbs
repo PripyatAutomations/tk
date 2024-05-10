@@ -1,0 +1,18 @@
+This node is running telekinesis server.<br/>
+<br/>
+The owner of this node, %%{owner.callsign}, must approve your access.<br/>
+Please provide a note below to send to %%{owner.name} (%%{owner.callsign})
+requesting permission to peer.<br/>
+<br/>
+<form id="request_access">
+ <formset>
+  <label for="callsign">Callsign</label><br/>
+  <input type="text" id="callsign"/><br/>
+  <label for="email">Email</label><br/>
+  <input type="email" id="email"/><br/>
+  A brief note for the sysop:<br/>
+  <textarea id="req_note"></textarea>
+  <input type="submit" value="Send"/>
+  <input type="reset" value="Clear"/><br/>
+ </formset>
+</form>

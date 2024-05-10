@@ -6,7 +6,7 @@ node:
     hostname:		N0CALL.ham.istabpeople.com
     allow_old_proto:    false
 
-# setup users/groups for the various subprocesses...
+# setup *SYSTEM* users/groups for the various subprocesses...
 users:
     ari_user:		rigctl
     ari_group:		rigctl
@@ -61,6 +61,7 @@ logging:
     log_level: debug
     sip_log_level: debug
 
+# Ideally we'd put these into the database but that overcomplicates genconf for now ;(
 radios:
     radio0:
         active_vfo: a
@@ -80,7 +81,7 @@ radios:
         power: 50
         station_mode: phone
         using_vox: false
-        cat_device: /dev/serial/by-id/usb-Silicon_Labs_CP2105_Dual_USB_to_UART_Bridge_Controller_0141CD8B-if00-port0
+        cat_device: /dev/ttyUSB0
         cat_baud: 38400
         rigctld_host: 127.0.0.1
         rigctld_port: 4532
@@ -98,3 +99,11 @@ soundcards:
             phone_spkr: 7
             pkt_mic: 13
             pkt_spkr: 25
+
+asterisk:
+    dialin:
+        allow_sip: true
+        allow_iax: true
+    dialout:
+        allow_sip: true
+        allow_iax: true
