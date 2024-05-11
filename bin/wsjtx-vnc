@@ -17,7 +17,7 @@ HTML_PORT=$((45560+${RFB_DISPLAY}))
 HOST=$(hostname)
 #PASSWD_FILE=/opt/telekinesis/etc/wsjtx-vnc.pass
 #RUN=/opt/telekinesis/run
-RUN=/tmp
+RUN=${TKDIR}/tmp
 
 ############################
 
@@ -57,12 +57,12 @@ export DISPLAY=:${RFB_DISPLAY}
 # Enable noVNC html5 #
 ######################
 #if [ ! -z "${LOCAL_ONLY}" ]; then
-#	/opt/telekinesis/ext/noVNC/utils/novnc_proxy --vnc localhost:${RFB_PORT} --listen localhost:${HTML_PORT} &
+#	${TKDIR}/ext/noVNC/utils/novnc_proxy --vnc localhost:${RFB_PORT} --listen localhost:${HTML_PORT} &
 #	PROXY_PID=$!
 #	echo "${PROXY_PID}" > ${RUN}/wsjtx-vnc-proxy.pid
 #	echo "novnc proxy is running at port localhost:6081 (PID: ${PROXY_PID})"
 #else
-#	/opt/telekinesis/ext/noVNC/utils/novnc_proxy --vnc localhost:${RFB_PORT} --listen ${HTML_PORT} &
+#	${TKDIR}/ext/noVNC/utils/novnc_proxy --vnc localhost:${RFB_PORT} --listen ${HTML_PORT} &
 #	PROXY_PID=$!
 #	echo "${PROXY_PID}" > ${RUN}/wsjtx-vnc-proxy.pid
 #	echo "novnc proxy is running at port localhost:6081  (PID: ${PROXY_PID})"

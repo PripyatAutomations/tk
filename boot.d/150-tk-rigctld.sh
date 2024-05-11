@@ -1,5 +1,6 @@
 #!/bin/bash
 . /opt/telekinesis/lib/config.sh
+set -e
 get_val ".users.baresip_user"
 RIGCTL_USER=$CF_VAL
 get_val ".users.baresip_group"
@@ -19,7 +20,7 @@ if [ $? -ne 0 ]; then
    echo " - User: ${RIGCTL_USER}"
    adduser --system \
    	   --comment "rigctl for telekinesis" \
-   	   --home /opt/telekinesis/var/run/asterisk --no-create-home \
+   	   --home ${TKDIR}/var/run/asterisk --no-create-home \
    	   --ingroup ${RIGCTL_GROUP} \
    	   --shell /bin/false ${RIGCTL_USER}
    usermod -a -G dialout ${RIGCTL_USER}
@@ -28,13 +29,13 @@ fi
 echo "* Fixing permissions..."
 
 echo "* Starting rigctld..."
-sudo -u ${RIGCTL_USER} env -i /opt/telekinesis/init.d/rigctld start
-sudo -u ${RIGCTL_USER} env -i /opt/telekinesis/init.d/rigctl-wrapper start
+sudo -u ${RIGCTL_USER} env -i ${TKDIR}/init.d/rigctld start
+sudo -u ${RIGCTL_USER} env -i ${TKDIR}/init.d/rigctl-wrapper start
 
 echo "**********"
 
 # Start rigctld websocket wrapper
-#./sbin/rigctl-wrapper.pl &
+# ${TKDIR}/sbin/rigctl-wrapper.pl &
 #PID=$!
-#echo ${PID} > ./run/rigctl-wrapper.pid
+#echo ${PID} > ${TKDIR}/run/rigctl-wrapper.pid
 #echo "* rigctl-wrapper running as pid ${PID}"

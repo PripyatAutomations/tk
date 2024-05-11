@@ -18,7 +18,7 @@ OWD=$(pwd)
 
 TEMPLATE_LOCALE=$(echo ${LOCALE} | cut -f 1 -d '_')
 
-gcloud iam service-accounts keys create /opt/telekinesis/etc/gcloud/sa-private-key.json  --iam-account=SA_NAME @PROJECT_ID.iam.gserviceaccount.com
+gcloud iam service-accounts keys create ${TKDIR}/etc/gcloud/sa-private-key.json  --iam-account=SA_NAME @PROJECT_ID.iam.gserviceaccount.com
 
 for template in langs/${TEMPLATE_LOCALE}/*.ssml; do
    IFILE="${template}"
@@ -36,7 +36,7 @@ for template in langs/${TEMPLATE_LOCALE}/*.ssml; do
    # if file doesnt exist (anymore), request it from amazon
    if [ ! -f "${DEST}/${OFILE}" ]; then
       echo "* Requesting ${DEST}/${OFILE} from gcloud: "
-      FULLTEXT="$(cat /opt/telekinesis/voices/${template})"
+      FULLTEXT="$(cat ${TKDIR}/voices/${template})"
       cat > /tmp/${BASEFILE}.json <<EOF
 "{
     'input':{

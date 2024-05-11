@@ -1,5 +1,6 @@
 #!/bin/bash
 . /opt/telekinesis/lib/config.sh
+set -e
 get_val ".users.asterisk_user"
 AST_USER=$CF_VAL
 get_val ".users.asterisk_group"
@@ -19,7 +20,7 @@ if [ $? -ne 0 ]; then
    echo " - User: ${AST_USER}"
    adduser --system \
    	   --comment "asterisk user for telekinesis" \
-   	   --home /opt/telekinesis/var/run/asterisk --no-create-home \
+   	   --home ${TKDIR}/var/run/asterisk --no-create-home \
    	   --ingroup ${AST_GROUP} \
    	   --shell /bin/false ${AST_USER}
    usermod -a -G audio ${AST_USER}
@@ -28,22 +29,22 @@ if [ $? -ne 0 ]; then
 fi
 
 echo "* Configuring: asterisk..."
-/opt/telekinesis/genconf/asterisk.pl
+${TKDIR}/genconf/asterisk.pl
 
 echo "* Creating directories..."
-mkdir -p /opt/telekinesis/logs/asterisk/
+mkdir -p ${TKDIR}/logs/asterisk/
 for i in cdr-csv/ cdr-custom/ cel-custom/; do
-   mkdir -p /opt/telekinesis/logs/asterisk/$i;
+   mkdir -p ${TKDIR}/logs/asterisk/$i;
 done
 
 echo "* Fixing permissions..."
 ast_dirs="etc/asterisk logs/asterisk var/cache/asterisk var/lib/asterisk run/asterisk var/spool/asterisk"
 real_ast_dirs=""
 for i in $ast_dirs; do
-    real_ast_dirs="/opt/telekinesis/$i $real_ast_dirs"
+    real_ast_dirs="${TKDIR}/$i $real_ast_dirs"
 done
 echo "$real_ast_dirs" | xargs chown -f -R ${AST_USER}:${FCGI_GROUP}
-chmod 0770 /opt/telekinesis/etc/asterisk/
+chmod 0770 ${TKDIR}/etc/asterisk/
 
 echo "* Starting: asterisk..."
-sudo -u ${AST_USER} env -i /opt/telekinesis/init.d/asterisk start
+sudo -u ${AST_USER} env -i ${TKDIR}/init.d/asterisk start

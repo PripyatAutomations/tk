@@ -1,5 +1,7 @@
 #!/bin/bash
 . /opt/telekinesis/lib/config.sh
+[ -z "$UID" ] && SUDO=sudo
+set -e
 
 RADIO=radio0
 
@@ -18,4 +20,4 @@ RIG_PORT=$CF_VAL
 # Start rigctld and save it's pid
 rigctld -m ${RIG_MODEL} -s ${CAT_BAUD} -P RIG -t ${RIG_PORT} -r ${CAT_DEV} &
 PID=$?
-echo ${PID} > /opt/telekinesis/run/rigctld.${RADIO}.pid
+echo ${PID} | $SUDO tee ${TKDIR}/run/rigctld.${RADIO}.pid

@@ -1,5 +1,6 @@
 #!/bin/bash
 . /opt/telekinesis/lib/config.sh
+set -e
 get_val ".users.fcgi_perl_user"
 FCGI_USER=$CF_VAL
 get_val ".users.fcgi_perl_group"
@@ -19,7 +20,7 @@ if [ $? -ne 0 ]; then
    echo " - User: ${FCGI_USER}"
    adduser --system \
    	   --comment "fastcgi-perl user for telekinesis" \
-   	   --home /opt/telekinesis/var/run/asterisk --no-create-home \
+   	   --home ${TKDIR}/var/run/asterisk --no-create-home \
    	   --ingroup ${FCGI_GROUP} \
    	   --shell /bin/false ${FCGI_USER}
    usermod -a -G ${WWW_DB_GROUP} ${FCGI_USER}
@@ -28,5 +29,5 @@ fi
 echo "* Fixing permissions..."
 
 echo "* Starting fastcgi-perl..."
-#sudo -u ${FCGI_USER} env -i /opt/telekinesis/init.d/fcgi-perl start
-sudo -u ${FCGI_USER} /opt/telekinesis/init.d/fcgi-perl start
+#sudo -u ${FCGI_USER} env -i ${TKDIR}/init.d/fcgi-perl start
+sudo -u ${FCGI_USER} ${TKDIR}/init.d/fcgi-perl start

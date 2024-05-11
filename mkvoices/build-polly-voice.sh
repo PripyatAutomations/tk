@@ -6,6 +6,7 @@ if [ -z $3 -o -z $2 -o -z $1 ]; then
    exit 100
 fi
 
+. /opt/telekinesis/lib/config.sh
 ENGINE=$1
 SPEAKER=$2
 LOCALE=$3
@@ -35,7 +36,7 @@ for template in langs/${TEMPLATE_LOCALE}/*.ssml; do
       aws polly synthesize-speech \
       --engine ${ENGINE} \
       --text-type ssml \
-      --text "file:///opt/telekinesis/voices/${IFILE}" \
+      --text "file://${TKDIR}/voices/${IFILE}" \
       --output-format "mp3" \
       --voice-id ${SPEAKER} \
       ${DEST}/${OFILE} 2>&1 >/dev/null || exit 1

@@ -1,4 +1,6 @@
 #!/bin/bash
+. /opt/telekinesis/lib/config.sh
+
 TARGETS="polly/en_au_Olivia:neural \
 	 polly/en_gb_Amy:neural \
 	 polly/en_gb_Brian:neural \
@@ -41,9 +43,9 @@ for i in ${TARGETS}; do
    LOCALE=$(echo ${FULLVOICE} | cut -f 1-2 -d '_')
    SPEAKER=$(echo ${FULLVOICE} | cut -f 3 -d '_')
    if [ ${SERVICE} == polly ]; then
-      /opt/telekinesis/voices/build-polly-voice.sh ${ENGINE} ${SPEAKER} ${LOCALE} || exit 1
+      ${TKDIR}/voices/build-polly-voice.sh ${ENGINE} ${SPEAKER} ${LOCALE} || exit 1
    fi
    if [ ${SERVICE} == gcloud ]; then
-      /opt/telekinesis/voices/build-gcloud-voice.sh ${ENGINE} ${SPEAKER} ${LOCALE} || exit 2
+      ${TKDIR}/voices/build-gcloud-voice.sh ${ENGINE} ${SPEAKER} ${LOCALE} || exit 2
    fi
 done

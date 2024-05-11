@@ -1,5 +1,6 @@
 #!/bin/bash
 . /opt/telekinesis/lib/config.sh
+set -e
 get_val ".users.ari_user"
 ARI_USER=$CF_VAL
 get_val ".users.ari_group"
@@ -21,17 +22,17 @@ if [ $? -ne 0 ]; then
    echo " - User: ${ARI_USER}"
    adduser --system \
    	   --comment "unprivileged ARI user for telekinesis" \
-   	   --home /opt/telekinesis/.empty --no-create-home \
+   	   --home ${TKDIR}/.empty --no-create-home \
    	   --ingroup ${ARI_GROUP} \
    	   --shell /bin/false ${ARI_USER}
 fi
 
 echo "* Fixing permissions..."
-chown ${FCGI_USER}:${ARI_GROUP} /opt/telekinesis/run/ari.${RADIO}.pass
-chmod 0750 /opt/telekinesis/run/ari.${RADIO}.pass
+chown ${FCGI_USER}:${ARI_GROUP} ${TKDIR}/run/ari.${RADIO}.pass
+chmod 0750 ${TKDIR}/run/ari.${RADIO}.pass
 
 echo "* Starting rigctl ARI (Asterisk Rest Interface)..."
-sudo -u ${ARI_USER} env -i /opt/telekinesis/init.d/tk-ari start &
+sudo -u ${ARI_USER} env -i ${TKDIR}/init.d/tk-ari start &
 
 # Legacy asterisk ARI
 #./ari-bin/tk-ari-legacy.pl &

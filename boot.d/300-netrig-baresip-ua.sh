@@ -1,5 +1,6 @@
 #!/bin/bash
 . /opt/telekinesis/lib/config.sh
+set -e
 get_val ".users.baresip_user"
 BARESIP_USER=$CF_VAL
 get_val ".users.baresip_group"
@@ -19,7 +20,7 @@ if [ $? -ne 0 ]; then
    echo " - User: ${BARESIP_USER}"
    adduser --system \
    	   --comment "baresip user for telekinesis" \
-   	   --home /opt/telekinesis/var/run/asterisk --no-create-home \
+   	   --home ${TKDIR}/var/run/asterisk --no-create-home \
    	   --ingroup ${BARESIP_GROUP} \
    	   --shell /bin/false ${BARESIP_USER}
    usermod -a -G audio ${BARESIP_USER}
@@ -29,10 +30,10 @@ fi
 
 # XXX: multiradio
 echo "* Configuring..."
-/opt/telekinesis/genconf/baresip-backend.pl ${RADIO}
+${TKDIR}/genconf/baresip-backend.pl ${RADIO}
 
 echo "* Fixing permissions..."
 
 echo "* Starting baresip ua..."
-#(sudo -u ${BARESIP_USER} env -i /opt/telekinesis/run/baresip-${RADIO}/launch.sh) &
-sudo -u ${BARESIP_USER} /opt/telekinesis/run/baresip-${RADIO}/launch.sh &
+#(sudo -u ${BARESIP_USER} env -i ${TKDIR}/run/baresip-${RADIO}/launch.sh) &
+sudo -u ${BARESIP_USER} ${TKDIR}/run/baresip-${RADIO}/launch.sh &

@@ -21,8 +21,8 @@ echo ""
 echo "Press CTRL-C (^C) now to abort or enter to proceed"
 read line
 
-#[ -d /mnt/opt/telekinesis ] && {
-#   echo "* Existing telekinesis install found at /mnt/opt/telekinesis, bailing!"
+#[ -d /mnt${TKDIR} ] && {
+#   echo "* Existing telekinesis install found at /mnt${TKDIR}, bailing!"
 #   exit 1
 #}
 
@@ -33,7 +33,7 @@ mountpoint /mnt
 }
 mkdir -p ${CACHEDIR}/deb
 
-[ ! -d /opt/telekinesis ] && {
+[ ! -d ${TKDIR} ] && {
    mkdir -p /opt
    cd /opt
    git clone https://github.com/PripyatAutomations/telekinesis.git
@@ -62,12 +62,12 @@ echo "nameserver 9.9.9.9" >> /mnt/etc/resolv.conf
 [ ! -f /mnt/opt/remotpi/etc/config.sh ] && {
    mkdir -p /mnt/opt/
    echo "* Copying telekinesis tree..."
-   cp -avrx /opt/telekinesis/ /mnt/opt/
+   cp -avrx ${TKDIR}/ /mnt/opt/
 }
 
 echo "apt install git sudo" > /mnt/tmp/stage1.5
 echo "useradd -r -m" >> /mnt/tmp/stage1.5
-echo "/opt/telekinesis/install/install.sh" >> /mnt/tmp/stage1.5
+echo "${TKDIR}/install/install.sh" >> /mnt/tmp/stage1.5
 chmod 0755 /mnt/tmp/stage1.5
 chroot /mnt /tmp/stage1.5
 

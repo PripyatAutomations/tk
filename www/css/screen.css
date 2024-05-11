@@ -27,11 +27,6 @@ html, body, div#wrap, div#left, div#right {
    user-select: auto;
 }
 
-input, textarea, select {
-   color: #cbfcfc !important;
-   background-color: #1a1d1e !important;
-}
-
 div#wrap {
    position: fixed;
    left: 0px;
@@ -40,8 +35,9 @@ div#wrap {
    width: 100%;
 }
 
-input {
-    color: #cbfcfc;
+input, textarea, select {
+   color: #cbfcfc !important;
+   background-color: #1a1d1e !important;
 }
 
 input:hover {

@@ -19,3 +19,6 @@
 [submodule "voices"]
 	path = voices
 	url = git@github.com:PripyatAutomations/Telekinesis-voices.git
+[submodule "ext/wireguard-go"]
+	path = ext/wireguard-go
+	url = https://github.com/WireGuard/wireguard-go.git

@@ -1,12 +1,14 @@
 #!/bin/bash
-cd /opt/telekinesis/ext/google-translate-cli
+. /opt/telekinesis/lib/config.sh
+
+cd ${TKDIR}/ext/google-translate-cli
 pip install -r requirements.txt
 pip install pyspellchecker
 pip install pyinstaller
 pyinstaller --onefile translate.py
-cp dist/translate /opt/telekinesis/bin/
+cp dist/translate ${TKDIR}/bin/
 
-export GOOGLE_APPLICATION_CREDENTIALS=/opt/telekinesis/etc/gapps.json
+export GOOGLE_APPLICATION_CREDENTIALS=${TKDIR}/etc/gapps.json
 
 # install google cloud SDK, if needed
 curl https://sdk.cloud.google.com | bash

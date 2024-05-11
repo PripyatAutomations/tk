@@ -5,6 +5,7 @@ use DBI;
 use UUID::Tiny ':std';
 use Sys::Hostname;
 
+# XXX: This needs to be imported from the config!
 my $db_path = "/opt/telekinesis/data/session.db";
 my $db_sql = "/opt/telekinesis/sql/session.sql";
 my $db_dsn = "DBI:SQLite:dbname=$db_path";

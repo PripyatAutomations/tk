@@ -5,9 +5,9 @@
 #unset TMUX
 #unset TMUX_PANE
 
-/opt/telekinesis/bin/modeset-off
+${TKDIR}/bin/modeset-off
 
-cd /opt/telekinesis/logs
+cd ${TKDIR}/logs
 
 # Configure mixer
 amixer -c$CARD set 'Speaker',0 ${PKT_SPKR}
@@ -24,7 +24,7 @@ rigctl -m 4 w 'NR00;'
 
 CF=${RUN}/kiss-setup.sh
 echo "#!/bin/bash" > ${CF}
-echo ". /opt/telekinesis/lib/config.sh" >> ${CF}
+echo ". ${TKDIR}/lib/config.sh" >> ${CF}
 echo "killall -TERM kissattach" >> ${CF}
 echo "sleep 3" >> ${CF}
 echo "killall -KILL kissattach" >> ${CF}
@@ -42,7 +42,7 @@ rm -f /tmp/kisstnc
 #tmux new-window -n 'ardopc'
 #tmux send-keys "ardopc" C-m
 #tmux new-window -n 'direwolf'
-#	tmux send-keys "direwolf -c /opt/telekinesis/etc/direwolf.conf -t 0 -p" C-m
+#	tmux send-keys "direwolf -c ${TKDIR}/etc/direwolf.conf -t 0 -p" C-m
 #tmux new-window -n 'kiss'
 #tmux send-keys "sudo ${RUN}/kiss-setup.sh" C-m
 

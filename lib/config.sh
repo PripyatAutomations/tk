@@ -16,6 +16,9 @@ get_val() {
    # remove outer quotes if present
    temp="${CF_VAL%\"}"
    temp="${temp#\"}"
-   CF_VAL=$temp
-   return $?
+   CF_VAL="$temp"
+   return "$?"
 }
+
+get_val ".paths.rootdir"
+TKDIR="${CF_VAL}"

@@ -8,7 +8,10 @@
 # Short-Description: Start the Perl FastCGI daemon.
 ### END INIT INFO 
 # XXX: make this suckless (TM)
-PERL_SCRIPT=/opt/telekinesis/sbin/fastcgi-wrapper.pl
+
+set -e
+
+PERL_SCRIPT=${TKDIR}/sbin/fastcgi-wrapper.pl
 #FASTCGI_USER=www-data
 RETVAL=0
 case "$1" in
