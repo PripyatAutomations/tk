@@ -11,7 +11,7 @@ cp ${TKDIR}/ext/toastr/build/toastr.min.js www/js
 cp ${TKDIR}/ext/toastr/build/toastr.min.css www/css
 
 echo "* Creating directories..."
-$SUDO mkdir -p ${TKDIR}/log/asterisk
+$SUDO mkdir -p ${TKDIR}/logs/asterisk
 $SUDO mkdir -p ${TKDIR}/var/run/asterisk
 $SUDO mkdir -p ${TKDIR}/var/cron
 

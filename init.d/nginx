@@ -2,7 +2,7 @@
 
 set -e
 
-[ -z $UID ] || SUDO=sudo
+[ -z "$UID" ] || SUDO=sudo
 
 # generate config file
 $SUDO ${TKDIR}/genconf/nginx.pl

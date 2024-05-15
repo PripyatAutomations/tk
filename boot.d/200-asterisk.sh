@@ -43,8 +43,10 @@ real_ast_dirs=""
 for i in $ast_dirs; do
     real_ast_dirs="${TKDIR}/$i $real_ast_dirs"
 done
+echo "real_ast_dirs: $real_ast_dirs"
+mkdir -p $real_ast_dirs
 echo "$real_ast_dirs" | xargs chown -f -R ${AST_USER}:${FCGI_GROUP}
-chmod 0770 ${TKDIR}/etc/asterisk/
+echo "$real_ast_dirs" | xargs chmod 0770 ${TKDIR}/etc/asterisk/
 
 echo "* Starting: asterisk..."
 sudo -u ${AST_USER} env -i ${TKDIR}/init.d/asterisk start

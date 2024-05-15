@@ -5,7 +5,8 @@ db/data/users.sql
 etc/telekinesis.yaml
 etc/letsencrypt/*
 run/*
-log/*
+logs/*
+logs/asterisk/*
 !Build/
 .last_cover_stats
 /META.yml
@@ -82,10 +83,7 @@ tmp/nginx/*
 var/cache/*
 var/spool/*
 var/run/*
-var/log/*
 var/lib/*
-logs/*
-logs/asterisk/*
 .empty/*
 *.old/*
 

@@ -35,7 +35,7 @@ echo "* Starting rigctl ARI (Asterisk Rest Interface)..."
 sudo -u ${ARI_USER} env -i ${TKDIR}/init.d/tk-ari start &
 
 # Legacy asterisk ARI
-#./ari-bin/tk-ari-legacy.pl &
+#${TKDIR}ari-bin/tk-ari-legacy.pl &
 #PID=$!
-#echo ${PID} > ./run/ari-legacy.pid
+#echo ${PID} > ${TKDIR}run/ari-legacy.pid
 #echo "* ari-legacy running as pid ${PID}"

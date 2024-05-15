@@ -14,8 +14,9 @@ my $radio = 'radio0';
 my $ami_file = "/opt/telekinesis/etc/asterisk/telekinesis/manager.logout-cgi.conf";
 my $ari_file = "/opt/telekinesis/etc/asterisk/telekinesis/ari.$radio.conf";
 my $ari_passfile = "/opt/telekinesis/run/ari.$radio.pass";
+my $ami_passfile = "/opt/telekinesis/run/ami.$radio.pass";
 my $ari_user = "telekinesis_$radio";
-my $ari_pass = join'', map +(0..9,'a'..'z','A'..'Z')[rand(10+26*2)], 1..32;
+my $ari_pass = join'', map +(0..9,'a'..'z','A'..'Z','~!@#%^&*()-=_+;:<>?,./')[rand(10+26*2)], 1..32;
 my $ami_pass = join'', map +(0..9,'a'..'z','A'..'Z')[rand(10+26*2)], 1..32;
 
 # Sort out permissions on /opt/telekinesis/etc/asterisk/telekinesis for dynamic configs by perl cgi
@@ -42,10 +43,10 @@ close $ami_fh;
 chmod 0700, $ami_file;
 
 # Save AMI password to a file, for use elsewhere
-open (our $ami_pass_fh, '>', $ami_pass_file) or die("Can't open $ami_pass_file for writing: $!");
+open (our $ami_pass_fh, '>', $ami_passfile) or die("Can't open $ami_passfile for writing: $!");
 print $ami_pass_fh "${ami_pass}\n";
-close $ami_pass_fh
-chmod 0700, $ami_pass_file;
+close $ami_pass_fh;
+chmod 0700, $ami_passfile;
 
 # Save to a password file
 open (our $aripass_fh, '>', $ari_passfile) or die("Can't open $ari_passfile for writing: $!");

@@ -1,9 +1,11 @@
 # simple makefile to assist with developing and packaging this mess...
 PROJECT := telekinesis
 PREFIX := /opt/telekinesis
-#db += db/rigs.db
-#db += db/session.db
-#db += db/users.db
+db += db/rigs.db
+db += db/session.db
+db += db/users.db
+db += db/telekinesis.sqlite
+
 VOICES_REPO := https://github.com/PripyatAutomations/Telekinesis-voices.git
 
 all: help
@@ -15,7 +17,7 @@ build:
 	./build.sh
 
 checkps:
-	ps auwwwx|egrep '(perl|nginx|rigctl)'|grep -v grep || true
+	ps auwwwx|egrep '(perl|nginx|tk-)'|grep -v grep || true
 
 start: ${db} declutter
 	./start.sh
@@ -43,7 +45,7 @@ stop:
 
 help:
 	@echo "*** make Targets for ${PROJECT} ***"
-	@echo "*** Start-Stop-Restart (root probably needed) ***"
+	@echo "*** Start-Stop-Restart (sudo applied as needed) ***"
 	@echo "start\t\tStart ${PROJECT}"
 	@echo "stop\t\tStop ${PROJECT}"
 	@echo "restart\t\tRestart ${PROJECT}"
@@ -60,6 +62,8 @@ download-voices:
 ##################
 # Database Tasks #
 ##################
+db-clean:
+
 #db: db-clean db-build
 
 #db-build: ${db}
@@ -95,10 +99,11 @@ clean: declutter
 declutter:
 	./cleanup.sh
 
-distclean: db-clean clean
+distclean: db-clean
+	./cleanup.sh -f
 
-#db-clean:
-#	${RM} -f ${db}
+db-clean:
+	${RM} -f ${db}
 
 ###########
 
